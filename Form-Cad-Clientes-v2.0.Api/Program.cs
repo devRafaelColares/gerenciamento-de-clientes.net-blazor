@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Formulario.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 var ConnectionString = builder.Configuration
     .GetConnectionString("DefaultConnection") ?? string.Empty;
 
-builder.Services.AddDbContext<FormularioContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(ConnectionString));
 
 // Add services to the container.

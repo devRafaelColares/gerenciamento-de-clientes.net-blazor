@@ -1,4 +1,6 @@
 using Formulario.Core.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Formulario.Api.Data.Mappings;
 
@@ -7,26 +9,30 @@ public class ClientesMapping : IEntityTypeConfiguration<Clientes>
     public void Configure(EntityTypeBuilder<Clientes> builder)
     {
         builder.ToTable("Clientes");
-        
-        builder.HasKey(x => x.Codigo).IsRequired().ValueGeneratedOnAdd();
 
-        builder.Property(x => x.Nome).IsRequired().HasMaxLength(256);
+        builder.HasKey(c => c.Codigo);
 
-        builder.Property(x => x.Telefone).IsRequired().HasMaxLength(20);
+        builder.Property(c => c.Codigo)
+            .HasMaxLength(10)
+            .IsRequired();
 
-        builder.Property(x => x.Foto).IsRequired().HasMaxLength(256);
+        builder.Property(c => c.Nome)
+            .HasMaxLength(100)
+            .IsRequired();
 
-        builder.Property(x => x.Sexo).IsRequired().HasMaxLength(10);
+        builder.Property(c => c.Telefone)
+            .HasMaxLength(20)
+            .IsRequired();
 
-        builder.Property(x => x.Cidade).IsRequired().HasMaxLength(100);
+        builder.Property(c => c.Foto)
+            .HasMaxLength(500);
 
-        builder.Property(x => x.Estado).IsRequired();HasMaxLength(50);
+        builder.Property(c => c.Sexo)
+            .HasMaxLength(1)
+            .IsRequired();
 
-        builder.Property(x => x.CreatedAt).HasDefaultValueSql("GETDATE()");
-
-            builder.HasOne(x => x.Cidade)
-            .WithMany(c => c.Clientes)
-            .HasForeignKey(x => x.CidadeId)
-            .OnDelete(DeleteBehavior.Cascade);
+        builder.HasOne(c => c.Cidade)
+            .WithMany()
+            .HasForeignKey(c => c.CidadeId);
     }
 }

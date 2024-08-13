@@ -17,4 +17,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Form-Cad-Clientes-v2.0.Core\Form-Cad-Clientes-v2.0.Core.csproj" />
+  </ItemGroup>
+
 </Project>
