@@ -31,3 +31,13 @@
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.pdb
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.genruntimeconfig.cache
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0/obj/Debug/net8.0/ref/Form-Cad-Clientes-v2.0.dll
+/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.csproj.AssemblyReference.cache
+/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.GeneratedMSBuildEditorConfig.editorconfig
+/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.AssemblyInfoInputs.cache
+/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.AssemblyInfo.cs
+/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.csproj.CoreCompileInputs.cache
+/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.MvcApplicationPartsAssemblyInfo.cs
+/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.MvcApplicationPartsAssemblyInfo.cache
+/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.dll
+/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/obj/Debug/net8.0/refint/Form-Cad-Clientes-v2.0.dll
+/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.pdb

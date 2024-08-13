@@ -30,6 +30,3 @@ public class ClientesMapping : IEntityTypeConfiguration<Clientes>
             .OnDelete(DeleteBehavior.Cascade);
     }
 }
-{
-    
-}

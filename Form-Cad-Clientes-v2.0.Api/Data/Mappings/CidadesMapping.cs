@@ -1,5 +1,4 @@
 using Formulario.Core.Models;
-
 namespace Formulario.Api.Data.Mappings
 {
     public class CidadesMapping : IEntityTypeConfiguration<Cidades>
