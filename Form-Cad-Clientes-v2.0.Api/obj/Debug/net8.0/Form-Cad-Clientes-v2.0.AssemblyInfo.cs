@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Form-Cad-Clientes-v2.0")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd49ad416422040de835748bf3c5788d906bcbcb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b31d4f8663f1136d0d10a0975b0740db9087818")]
 [assembly: System.Reflection.AssemblyProductAttribute("Form-Cad-Clientes-v2.0")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Form-Cad-Clientes-v2.0")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

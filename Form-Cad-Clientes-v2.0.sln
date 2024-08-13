@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Form-Cad-Clientes-v2.0", "Form-Cad-Clientes-v2.0\Form-Cad-Clientes-v2.0.csproj", "{E59910FE-21A5-4209-9C16-DB77440E9688}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Form-Cad-Clientes-v2.0.Core", "Form-Cad-Clientes-v2.0.Core\Form-Cad-Clientes-v2.0.Core.csproj", "{7532B231-9A5E-46FD-9D30-B87660DB5D31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Form-Cad-Clientes-v2.0", "Form-Cad-Clientes-v2.0.Api\Form-Cad-Clientes-v2.0.csproj", "{F2A2F515-EB7C-44DB-9C29-34C8957A8F59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +24,9 @@ Global
 		{7532B231-9A5E-46FD-9D30-B87660DB5D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7532B231-9A5E-46FD-9D30-B87660DB5D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7532B231-9A5E-46FD-9D30-B87660DB5D31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2A2F515-EB7C-44DB-9C29-34C8957A8F59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2A2F515-EB7C-44DB-9C29-34C8957A8F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2A2F515-EB7C-44DB-9C29-34C8957A8F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2A2F515-EB7C-44DB-9C29-34C8957A8F59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
