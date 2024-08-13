@@ -1,4 +1,6 @@
 using Formulario.Core.Models;
+using Formulario.Api.Data.Mappings;
+using Microsoft.EntityFrameworkCore;
 
 namespace Formulario.Api.Data;
 
@@ -13,7 +15,6 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
 
         modelBuilder.Entity<Cidades>().HasData(
             new Cidades { Nome = "São Paulo", Estado = "SP" },
