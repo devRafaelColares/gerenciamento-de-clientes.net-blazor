@@ -1,0 +1,51 @@
+@page "/login"
+@layout HeadlessLayout
+
+<PageTitle>Login</PageTitle>
+
+<MudGrid Justify="Justify.Center">
+
+    <MudItem xs="12" sm="12" md="8" lg="6" xl="6" xxl="6">
+        <MudPaper Class="mud-width-full pa-6">
+            <div>
+                <h1 class="text-center mb-4">Login</h1>
+            </div>
+            <MudForm @ref="_mudForm" Class="w-100">
+                <MudTextField Class="mud-width-full mb-4"
+                    T="string"
+                    InputType="InputType.Email"
+                    Placeholder="Informe o Email"
+                    Required="true"
+                    RequiredError="O campo 'Email' é obrigatório!" />
+                    @* Validation="@(new EmailAddressAttribute {ErrorMessage = "Email inválido!"})" /> *@
+
+                <MudTextField Class="mud-width-full mb-4"
+                    T="string"
+                    InputType="InputType.Password"
+                    Placeholder="Informe a Senha"
+                    Required="true"
+                    RequiredError="O campo 'Senha' é obrigatório!" />
+
+                @* <MudButton Variant="Filled" Color="Primary" Class="w-100" OnClick="HandleLogin">Login</MudButton> *@
+            </MudForm>
+            <div class="d-flex mt=8">
+                <MudButton Variant="Variant.Filled" Color="Color.Primary">Entrar</MudButton>
+                <MudSpacer />
+                <MudButton Href="/resgistrar">Registrar</MudButton>
+            </div>
+        </MudPaper>
+    </MudItem>
+
+</MudGrid>
+
+@code {
+    MudForm? _mudForm;
+
+    private void HandleLogin()
+    {
+        if (_mudForm != null && _mudForm.IsValid)
+        {
+            // Handle login logic here
+        }
+    }
+}

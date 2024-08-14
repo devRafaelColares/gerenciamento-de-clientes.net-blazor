@@ -3,9 +3,6 @@ build_property.EnableAotAnalyzer =
 build_property.EnableSingleFileAnalyzer = 
 build_property.EnableTrimAnalyzer = false
 build_property.IncludeAllContentForSelfExtract = 
-build_property.MudDebugAnalyzer = 
-build_property.MudAllowedAttributePattern = 
-build_property.MudIllegalParameters = 
 build_property.TargetFramework = net8.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = 
@@ -39,6 +36,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Web/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Web/Pages/Identity/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSWRlbnRpdHkvTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Web/Pages/Identity/Register.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSWRlbnRpdHkvUmVnaXN0ZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Web/Pages/Weather.razor]
