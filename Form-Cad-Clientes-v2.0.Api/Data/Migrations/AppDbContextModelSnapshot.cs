@@ -32,13 +32,13 @@ namespace Form_Cad_Clientes_v2._0.Migrations
 
                     b.Property<string>("Estado")
                         .IsRequired()
-                        .HasMaxLength(2)
-                        .HasColumnType("nvarchar(2)");
+                        .HasMaxLength(25)
+                        .HasColumnType("NVARCHAR");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("NVARCHAR");
 
                     b.HasKey("Id");
 
@@ -213,15 +213,11 @@ namespace Form_Cad_Clientes_v2._0.Migrations
                 {
                     b.Property<long>("Codigo")
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(10)
                         .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Codigo"));
 
                     b.Property<long>("CidadeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("CidadesId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedAt")
@@ -230,28 +226,26 @@ namespace Form_Cad_Clientes_v2._0.Migrations
                     b.Property<string>("Foto")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("NVARCHAR");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("NVARCHAR");
 
                     b.Property<string>("Sexo")
                         .IsRequired()
-                        .HasMaxLength(1)
-                        .HasColumnType("nvarchar(1)");
+                        .HasMaxLength(20)
+                        .HasColumnType("NVARCHAR");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("NVARCHAR");
 
                     b.HasKey("Codigo");
 
                     b.HasIndex("CidadeId");
-
-                    b.HasIndex("CidadesId");
 
                     b.ToTable("Clientes", (string)null);
                 });
@@ -259,14 +253,10 @@ namespace Form_Cad_Clientes_v2._0.Migrations
             modelBuilder.Entity("Formulario.Core.Models.Clientes", b =>
                 {
                     b.HasOne("Formulario.Core.Models.Cidades", "Cidade")
-                        .WithMany()
+                        .WithMany("Clientes")
                         .HasForeignKey("CidadeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Formulario.Core.Models.Cidades", null)
-                        .WithMany("Clientes")
-                        .HasForeignKey("CidadesId");
 
                     b.Navigation("Cidade");
                 });

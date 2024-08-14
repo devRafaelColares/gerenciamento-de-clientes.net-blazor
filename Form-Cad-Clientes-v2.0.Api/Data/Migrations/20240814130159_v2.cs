@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Form_Cad_Clientes_v2._0.Migrations
 {
     /// <inheritdoc />
-    public partial class v1 : Migration
+    public partial class v2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,8 +19,8 @@ namespace Form_Cad_Clientes_v2._0.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Estado = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: false)
+                    Nome = table.Column<string>(type: "NVARCHAR(100)", maxLength: 100, nullable: false),
+                    Estado = table.Column<string>(type: "NVARCHAR(25)", maxLength: 25, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,15 +31,14 @@ namespace Form_Cad_Clientes_v2._0.Migrations
                 name: "Clientes",
                 columns: table => new
                 {
-                    Codigo = table.Column<long>(type: "bigint", maxLength: 10, nullable: false)
+                    Codigo = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Telefone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Foto = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    Sexo = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false),
+                    Nome = table.Column<string>(type: "NVARCHAR(100)", maxLength: 100, nullable: false),
+                    Telefone = table.Column<string>(type: "NVARCHAR(20)", maxLength: 20, nullable: false),
+                    Foto = table.Column<string>(type: "NVARCHAR(500)", maxLength: 500, nullable: false),
+                    Sexo = table.Column<string>(type: "NVARCHAR(20)", maxLength: 20, nullable: false),
                     CidadeId = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CidadesId = table.Column<long>(type: "bigint", nullable: true)
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -50,11 +49,6 @@ namespace Form_Cad_Clientes_v2._0.Migrations
                         principalTable: "Cidades",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Clientes_Cidades_CidadesId",
-                        column: x => x.CidadesId,
-                        principalTable: "Cidades",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -95,11 +89,6 @@ namespace Form_Cad_Clientes_v2._0.Migrations
                 name: "IX_Clientes_CidadeId",
                 table: "Clientes",
                 column: "CidadeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Clientes_CidadesId",
-                table: "Clientes",
-                column: "CidadesId");
         }
 
         /// <inheritdoc />

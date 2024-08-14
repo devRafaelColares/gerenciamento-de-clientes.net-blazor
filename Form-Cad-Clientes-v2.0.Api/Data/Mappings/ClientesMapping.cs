@@ -13,26 +13,29 @@ public class ClientesMapping : IEntityTypeConfiguration<Clientes>
         builder.HasKey(c => c.Codigo);
 
         builder.Property(c => c.Codigo)
-            .HasMaxLength(10)
-            .IsRequired();
+            .ValueGeneratedOnAdd();
 
         builder.Property(c => c.Nome)
+            .HasColumnType("NVARCHAR")
             .HasMaxLength(100)
             .IsRequired();
 
         builder.Property(c => c.Telefone)
+            .HasColumnType("NVARCHAR")
             .HasMaxLength(20)
             .IsRequired();
 
         builder.Property(c => c.Foto)
+            .HasColumnType("NVARCHAR")
             .HasMaxLength(500);
 
         builder.Property(c => c.Sexo)
-            .HasMaxLength(1)
+            .HasColumnType("NVARCHAR")
+            .HasMaxLength(20)
             .IsRequired();
 
         builder.HasOne(c => c.Cidade)
-            .WithMany()
+            .WithMany(c => c.Clientes)
             .HasForeignKey(c => c.CidadeId);
     }
 }

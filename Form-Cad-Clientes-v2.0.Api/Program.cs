@@ -4,14 +4,15 @@ using Formulario.Core.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Formulario.Api.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var ConnectionString = builder.Configuration
+var connectionString = builder.Configuration
     .GetConnectionString("DefaultConnection") ?? string.Empty;
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(ConnectionString));
+    options.UseSqlServer(connectionString));
 
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
@@ -62,19 +63,13 @@ app.MapPut("/Clientes", async (Request request, AppDbContext context) =>
     await context.SaveChangesAsync();
 
     // Preparar a resposta
-    var response = new Response
+    var response = new ClienteResponse
     {
         Codigo = cliente.Codigo, // O ID gerado pelo banco de dados
         Nome = cliente.Nome,
         Telefone = cliente.Telefone,
         Foto = cliente.Foto,
         Sexo = cliente.Sexo,
-        Cidade = new CidadeResponse
-        {
-            Id = cliente.Cidade.Id,
-            Nome = cliente.Cidade.Nome,
-            Estado = cliente.Cidade.Estado
-        },
         CreatedAt = DateTime.UtcNow
     };
 
@@ -82,7 +77,7 @@ app.MapPut("/Clientes", async (Request request, AppDbContext context) =>
 })
 .WithName("Cadastro de clientes")
 .WithSummary("Esta rota servirá para cadastrar novos clientes")
-.Produces<Response>(StatusCodes.Status201Created);
+.Produces<ClienteResponse>(StatusCodes.Status201Created);
 
 // Endpoint GET /Clientes
 app.MapGet("/Clientes", async (AppDbContext context) =>
@@ -91,19 +86,13 @@ app.MapGet("/Clientes", async (AppDbContext context) =>
         .Include(c => c.Cidade)
         .ToListAsync();
 
-    var response = clientes.Select(c => new Response
+    var response = clientes.Select(c => new ClienteResponse
     {
         Codigo = c.Codigo,
         Nome = c.Nome,
         Telefone = c.Telefone,
         Foto = c.Foto,
         Sexo = c.Sexo,
-        Cidade = new CidadeResponse
-        {
-            Id = c.Cidade.Id,
-            Nome = c.Cidade.Nome,
-            Estado = c.Cidade.Estado
-        },
         CreatedAt = c.CreatedAt
     }).ToList();
 
@@ -111,35 +100,32 @@ app.MapGet("/Clientes", async (AppDbContext context) =>
 })
 .WithName("Listagem de clientes")
 .WithSummary("Esta rota retornará a lista de clientes")
-.Produces<List<Response>>();
+.Produces<List<ClienteResponse>>();
 
+// Endpoint GET /Cidades
 // Endpoint GET /Cidades
 app.MapGet("/Cidades", async (AppDbContext context) =>
 {
+    // Buscar todas as cidades incluindo clientes
     var cidades = await context.Cidades
         .Include(c => c.Clientes)
         .ToListAsync();
 
+    // Preparar a resposta
     var response = cidades.Select(c => new CidadeDetalhesResponse
     {
         Id = c.Id,
         Nome = c.Nome,
         Estado = c.Estado,
-        Clientes = c.Clientes.Select(cliente => new Response
+        Clientes = c.Clientes.Select(cliente => new ClienteResponse
         {
             Codigo = cliente.Codigo,
             Nome = cliente.Nome,
             Telefone = cliente.Telefone,
             Foto = cliente.Foto,
             Sexo = cliente.Sexo,
-            Cidade = new CidadeResponse
-            {
-                Id = cliente.Cidade.Id,
-                Nome = cliente.Cidade.Nome,
-                Estado = cliente.Cidade.Estado
-            },
             CreatedAt = cliente.CreatedAt
-        }).ToList()
+        }).Cast<IClienteResponse>().ToList()
     }).ToList();
 
     return Results.Ok(response);
@@ -147,6 +133,41 @@ app.MapGet("/Cidades", async (AppDbContext context) =>
 .WithName("Listagem de cidades com clientes")
 .WithSummary("Esta rota retornará a lista de cidades com seus clientes")
 .Produces<List<CidadeDetalhesResponse>>();
+
+
+// Endpoint GET /Cidades/{id}
+app.MapGet("/Cidades/{id}", async (long id, AppDbContext context) =>
+{
+    var cidade = await context.Cidades
+        .Include(c => c.Clientes)
+        .FirstOrDefaultAsync(c => c.Id == id);
+
+    if (cidade == null)
+    {
+        return Results.NotFound();
+    }
+
+    var response = new CidadeDetalhesResponse
+    {
+        Id = cidade.Id,
+        Nome = cidade.Nome,
+        Estado = cidade.Estado,
+        Clientes = cidade.Clientes.Select(cliente => new ClienteResponse
+        {
+            Codigo = cliente.Codigo,
+            Nome = cliente.Nome,
+            Telefone = cliente.Telefone,
+            Foto = cliente.Foto,
+            Sexo = cliente.Sexo,
+            CreatedAt = cliente.CreatedAt
+        }).Cast<IClienteResponse>().ToList()
+    };
+
+    return Results.Ok(response);
+})
+.WithName("Detalhes da cidade")
+.WithSummary("Esta rota retornará os detalhes de uma cidade específica com seus clientes")
+.Produces<CidadeDetalhesResponse>();
 
 app.Run();
 
@@ -159,34 +180,8 @@ public class Request
     public CidadeRequest Cidade { get; set; } = null!;
 }
 
-public class Response
-{
-    public long Codigo { get; set; }
-    public string Nome { get; set; } = string.Empty;
-    public string Telefone { get; set; } = string.Empty;
-    public string Foto { get; set; } = string.Empty;
-    public string Sexo { get; set; } = string.Empty;
-    public CidadeResponse Cidade { get; set; } = null!;
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-}
-
 public class CidadeRequest
 {
     public string Nome { get; set; } = string.Empty;
     public string Estado { get; set; } = string.Empty;
-}
-
-public class CidadeResponse
-{
-    public long Id { get; set; }
-    public string Nome { get; set; } = string.Empty;
-    public string Estado { get; set; } = string.Empty;
-}
-
-public class CidadeDetalhesResponse
-{
-    public long Id { get; set; }
-    public string Nome { get; set; } = string.Empty;
-    public string Estado { get; set; } = string.Empty;
-    public List<Response> Clientes { get; set; } = new List<Response>();
 }

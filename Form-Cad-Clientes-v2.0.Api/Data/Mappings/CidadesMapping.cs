@@ -16,11 +16,17 @@ public class CidadesMapping : IEntityTypeConfiguration<Cidades>
             .ValueGeneratedOnAdd();
 
         builder.Property(c => c.Nome)
+            .HasColumnType("NVARCHAR")
             .HasMaxLength(100)
             .IsRequired();
 
         builder.Property(c => c.Estado)
-            .HasMaxLength(2)
+            .HasColumnType("NVARCHAR")
+            .HasMaxLength(25)
             .IsRequired();
+
+        builder.HasMany(c => c.Clientes)
+            .WithOne(c => c.Cidade)
+            .HasForeignKey(c => c.CidadeId);
     }
 }
