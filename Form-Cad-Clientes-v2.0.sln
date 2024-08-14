@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Form-Cad-Clientes-v2.0.Core
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Form-Cad-Clientes-v2.0", "Form-Cad-Clientes-v2.0.Api\Form-Cad-Clientes-v2.0.csproj", "{F2A2F515-EB7C-44DB-9C29-34C8957A8F59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Form-Cad-Clientes-v2.0.Web", "Form-Cad-Clientes-v2.0.Web\Form-Cad-Clientes-v2.0.Web.csproj", "{1B7C1BAD-3968-4402-927B-93E40A59B934}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,5 +30,13 @@ Global
 		{F2A2F515-EB7C-44DB-9C29-34C8957A8F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2A2F515-EB7C-44DB-9C29-34C8957A8F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2A2F515-EB7C-44DB-9C29-34C8957A8F59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80588162-6825-45C7-BFB4-298A9067D493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80588162-6825-45C7-BFB4-298A9067D493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80588162-6825-45C7-BFB4-298A9067D493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80588162-6825-45C7-BFB4-298A9067D493}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B7C1BAD-3968-4402-927B-93E40A59B934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B7C1BAD-3968-4402-927B-93E40A59B934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B7C1BAD-3968-4402-927B-93E40A59B934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B7C1BAD-3968-4402-927B-93E40A59B934}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
