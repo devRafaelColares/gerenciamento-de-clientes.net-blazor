@@ -9,10 +9,6 @@
       "PackagePath": "staticwebassets/_framework/blazor.webassembly.js.gz"
     },
     {
-      "Id": "/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Web/obj/Debug/net8.0/scopedcss/bundle/Form-Cad-Clientes-v2.0.Web.styles.css",
-      "PackagePath": "staticwebassets/Form-Cad-Clientes-v2.0.Web.styles.css"
-    },
-    {
       "Id": "/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Web/obj/Debug/net8.0/service-worker-assets.js",
       "PackagePath": "staticwebassets/service-worker-assets.js"
     },

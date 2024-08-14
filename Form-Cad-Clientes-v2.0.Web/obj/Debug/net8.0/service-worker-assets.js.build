@@ -25,10 +25,6 @@
       "url": "manifest.webmanifest"
     },
     {
-      "hash": "sha256-Z\/V719VwWWSh7EhWT4p4ZR3B2GjsDCctAAh+cY1RfjU=",
-      "url": "Form-Cad-Clientes-v2.0.Web.styles.css"
-    },
-    {
       "hash": "sha256-gvHfnndfEu1tRf0rFb5988rWq7ITIotOaE8+AMbKYbc=",
       "url": "_framework\/blazor.webassembly.js"
     },
@@ -845,15 +841,15 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-T68a6BBVPTSg3iqXvbF2u2er0rtGp96avI4Yba3BQmo=",
+      "hash": "sha256-xevQqyyAuMvI4vA05mxG2fThQAX4vbcQDiJbC7AslxM=",
       "url": "_framework\/Form-Cad-Clientes-v2.0.Web.wasm"
     },
     {
-      "hash": "sha256-\/OJ\/DP0CAbYN1ptcXfA0uamw2EUQTo9AfGbmaA8PeTM=",
+      "hash": "sha256-0bClkN3cJuTEKzhkupzfQenZDGbuuysv\/z3J1d2gRnQ=",
       "url": "_framework\/Form-Cad-Clientes-v2.0.Web.pdb"
     },
     {
-      "hash": "sha256-3kjNfkGPVQfCUev8J4WdbR+BHowN1OrDyoAcUVTOY8c=",
+      "hash": "sha256-uhYvd9t4kaVdQGfuqtlGHgrMNe9O\/oMygnwb0sBChm4=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -865,5 +861,5 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "LeChvUcL"
+  "version": "epRenn+3"
 };

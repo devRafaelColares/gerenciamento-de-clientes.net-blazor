@@ -830,9 +830,7 @@
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Web/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.Form-Cad-Clientes-v2.0.Web.props
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Web/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.Form-Cad-Clientes-v2.0.Web.props
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Web/obj/Debug/net8.0/staticwebassets.pack.json
-/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Web/obj/Debug/net8.0/scopedcss/Layout/MainLayout.razor.rz.scp.css
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Web/obj/Debug/net8.0/scopedcss/bundle/Form-Cad-Clientes-v2.0.Web.styles.css
-/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Web/obj/Debug/net8.0/scopedcss/projectbundle/Form-Cad-Clientes-v2.0.Web.bundle.scp.css
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Web/obj/Debug/net8.0/compressed/9byxewig4q.gz
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Web/obj/Debug/net8.0/compressed/v9bgjd1sj2.gz
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Web/obj/Debug/net8.0/compressed/jfysnwy4ie.gz
