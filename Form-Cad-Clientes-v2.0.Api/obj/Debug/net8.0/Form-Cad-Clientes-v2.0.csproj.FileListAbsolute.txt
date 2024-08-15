@@ -41,6 +41,9 @@
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Azure.Core.dll
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Azure.Identity.dll
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Humanizer.dll
+/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Microsoft.AspNetCore.OpenApi.dll
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Microsoft.CodeAnalysis.dll
@@ -54,6 +57,9 @@
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Relational.dll
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.SqlServer.dll
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Microsoft.Extensions.DependencyModel.dll
+/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Microsoft.Extensions.Identity.Core.dll
+/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Microsoft.Extensions.Identity.Stores.dll
+/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Microsoft.Identity.Client.dll
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Microsoft.Identity.Client.Extensions.Msal.dll
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll

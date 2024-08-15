@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Form-Cad-Clientes-v2.0.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b45bf6c3616df6b1873537dffc615b435e5f1a0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c35b0d3b53da97aae2923a9182b9a54830ab592")]
 [assembly: System.Reflection.AssemblyProductAttribute("Form-Cad-Clientes-v2.0.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Form-Cad-Clientes-v2.0.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

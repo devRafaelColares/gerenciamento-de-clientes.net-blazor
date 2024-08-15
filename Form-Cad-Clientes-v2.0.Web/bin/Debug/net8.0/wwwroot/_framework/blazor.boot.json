@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "Form-Cad-Clientes-v2.0.Web",
   "resources": {
-    "hash": "sha256-NNpgMGZu2sS7+aHOi/ZQ/tNoK4xbbaSFVxRcVhSaOPY=",
+    "hash": "sha256-zEAfGexsNJu4YMhbsd9o1cWkngWZegc2pfZ5AGPTkZo=",
     "jsModuleNative": {
       "dotnet.native.8.0.7.dhhxtek8ia.js": "sha256-tFsxPBbhkdn6GKNBKvCRLzrfAHdyM86odYTe0MtrwMk="
     },
@@ -211,10 +211,10 @@
       "mscorlib.wasm": "sha256-fLbZiSHBNdpHoh4EgRqMaNP5NQyIK5TEj6AXFLqo8m8=",
       "netstandard.wasm": "sha256-d4xbAE8qrKq5euUoZHPO+jkYPjlCYBzUew45MKsYKic=",
       "System.Private.CoreLib.wasm": "sha256-8yi6NcX1lkNQgV4WKjnMBYIZyKh4P+OXnXVQmgxGZD4=",
-      "Form-Cad-Clientes-v2.0.Web.wasm": "sha256-HRSlktDRzjKLVaWaabutvMPH5yQGowydo/iel9lG31U="
+      "Form-Cad-Clientes-v2.0.Web.wasm": "sha256-C9lVXYLCg8Bluqh4DiXvFx7bq6B2ZeDLmFu427Ie06o="
     },
     "pdb": {
-      "Form-Cad-Clientes-v2.0.Web.pdb": "sha256-HzFo+bQozFNRGtjzMHJlsAacs0zKHuLdVyjzYa4ZNHc="
+      "Form-Cad-Clientes-v2.0.Web.pdb": "sha256-BVFxAYhuAdKgQKySO26GS6/9YfMFzB8eUrhaAEJ+AaA="
     }
   },
   "cacheBootResources": true,
