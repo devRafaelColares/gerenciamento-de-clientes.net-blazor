@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Formulario.Api.Data;
 using Formulario.Api.Interfaces;
+using Formulario.Core.DTOs;
 using Formulario.Core.Requests;
-using Formulario.Core.Responses;
 using Formulario.Core.Models;
 using Formulario.Core;
 
@@ -17,7 +17,37 @@ namespace Formulario.Api.Services
             _context = context;
         }
 
-        public async Task<Response<Clientes?>> CreateAsync(CreateClienteRequest request)
+        private ClienteDTO ConvertToDTO(Clientes cliente)
+        {
+            return new ClienteDTO
+            {
+                Codigo = cliente.Codigo,
+                Nome = cliente.Nome,
+                Telefone = cliente.Telefone,
+                Foto = cliente.Foto,
+                Sexo = cliente.Sexo,
+                Cidade = new CidadeDTO
+                {
+                    Id = cliente.Cidade.Id,
+                    Nome = cliente.Cidade.Nome,
+                    Estado = cliente.Cidade.Estado
+                }
+            };
+        }
+
+        private Clientes ConvertToEntity(CreateClienteRequest request, long cidadeId)
+        {
+            return new Clientes
+            {
+                Nome = request.Nome,
+                Telefone = request.Telefone,
+                Foto = request.Foto,
+                Sexo = request.Sexo,
+                CidadeId = cidadeId
+            };
+        }
+
+        public async Task<Response<ClienteDTO?>> CreateAsync(CreateClienteRequest request)
         {
             try
             {
@@ -36,27 +66,22 @@ namespace Formulario.Api.Services
                     await _context.SaveChangesAsync();
                 }
 
-                var cliente = new Clientes
-                {
-                    Nome = request.Nome,
-                    Telefone = request.Telefone,
-                    Foto = request.Foto,
-                    Sexo = request.Sexo,
-                    CidadeId = cidade.Id
-                };
+                var cliente = ConvertToEntity(request, cidade.Id);
 
                 _context.Clientes.Add(cliente);
                 await _context.SaveChangesAsync();
 
-                return new Response<Clientes?>(true, cliente, "Cliente criado com sucesso", 201);
+                var clienteDto = ConvertToDTO(cliente);
+
+                return new Response<ClienteDTO?>(true, clienteDto, "Cliente criado com sucesso", 201);
             }
             catch (Exception ex)
             {
-                return new Response<Clientes?>(false, null, ex.Message, 500);
+                return new Response<ClienteDTO?>(false, null, ex.Message, 500);
             }
         }
 
-        public async Task<Response<List<Clientes>>> GetAllAsync()
+        public async Task<Response<List<ClienteDTO>>> GetAllAsync()
         {
             try
             {
@@ -64,15 +89,17 @@ namespace Formulario.Api.Services
                     .Include(c => c.Cidade)
                     .ToListAsync();
 
-                return new Response<List<Clientes>>(true, clientes);
+                var clienteDtos = clientes.Select(ConvertToDTO).ToList();
+
+                return new Response<List<ClienteDTO>>(true, clienteDtos);
             }
             catch (Exception ex)
             {
-                return new Response<List<Clientes>>(false, null, ex.Message, 500);
+                return new Response<List<ClienteDTO>>(false, null, ex.Message, 500);
             }
         }
 
-        public async Task<Response<Clientes?>> GetByIdAsync(long id)
+        public async Task<Response<ClienteDTO?>> GetByIdAsync(long id)
         {
             try
             {
@@ -80,17 +107,22 @@ namespace Formulario.Api.Services
                     .Include(c => c.Cidade)
                     .FirstOrDefaultAsync(c => c.Codigo == id);
 
-                return cliente != null
-                    ? new Response<Clientes?>(true, cliente)
-                    : new Response<Clientes?>(false, null, "Cliente não encontrado", 404);
+                if (cliente == null)
+                {
+                    return new Response<ClienteDTO?>(false, null, "Cliente não encontrado", 404);
+                }
+
+                var clienteDto = ConvertToDTO(cliente);
+
+                return new Response<ClienteDTO?>(true, clienteDto);
             }
             catch (Exception ex)
             {
-                return new Response<Clientes?>(false, null, ex.Message, 500);
+                return new Response<ClienteDTO?>(false, null, ex.Message, 500);
             }
         }
 
-        public async Task<Response<Clientes?>> UpdateAsync(long id, UpdateClienteRequest request)
+        public async Task<Response<ClienteDTO?>> UpdateAsync(long id, UpdateClienteRequest request)
         {
             try
             {
@@ -99,7 +131,7 @@ namespace Formulario.Api.Services
 
                 if (cliente == null)
                 {
-                    return new Response<Clientes?>(false, null, "Cliente não encontrado", 404);
+                    return new Response<ClienteDTO?>(false, null, "Cliente não encontrado", 404);
                 }
 
                 cliente.Nome = request.Nome;
@@ -110,11 +142,13 @@ namespace Formulario.Api.Services
                 _context.Clientes.Update(cliente);
                 await _context.SaveChangesAsync();
 
-                return new Response<Clientes?>(true, cliente, "Cliente atualizado com sucesso");
+                var clienteDto = ConvertToDTO(cliente);
+
+                return new Response<ClienteDTO?>(true, clienteDto, "Cliente atualizado com sucesso");
             }
             catch (Exception ex)
             {
-                return new Response<Clientes?>(false, null, ex.Message, 500);
+                return new Response<ClienteDTO?>(false, null, ex.Message, 500);
             }
         }
 

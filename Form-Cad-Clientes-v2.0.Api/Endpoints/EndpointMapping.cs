@@ -1,8 +1,8 @@
 using Formulario.Api.Endpoints.Clientes;
 using Formulario.Api.Endpoints.Cidades;
 using Formulario.Api.Interfaces;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
+using Formulario.Api.Models;
+using Formulario.Api.Endpoints.IdentityUsuario;
 
 namespace Formulario.Api.Endpoints
 {
@@ -13,27 +13,33 @@ namespace Formulario.Api.Endpoints
             var endpoints = app
                 .MapGroup("");
 
-            // Endpoint de saúde
             endpoints.MapGroup("/")
                 .WithTags("Health Check")
                 .MapGet("/", () => new { message = "OK" });
 
             var clientesGroup = endpoints.MapGroup("/")
                 .WithTags("Clientes");
+                // .RequireAuthorization();
             clientesGroup.MapEndpoint<CreateClienteEndpoint>();
             clientesGroup.MapEndpoint<ListClientesEndpoint>();
             clientesGroup.MapEndpoint<GetClienteByIdEndpoint>();
             clientesGroup.MapEndpoint<UpdateClienteEndpoint>();
             clientesGroup.MapEndpoint<DeleteClienteEndpoint>();
 
-            // Endpoints de cidades
             var cidadesGroup = endpoints.MapGroup("/")
                 .WithTags("Cidades");
+                // .RequireAuthorization();
             cidadesGroup.MapEndpoint<CreateCidadeEndpoint>();
             cidadesGroup.MapEndpoint<ListCidadesEndpoint>();
             cidadesGroup.MapEndpoint<GetCidadeByIdEndpoint>();
             cidadesGroup.MapEndpoint<UpdateCidadeEndpoint>();
             cidadesGroup.MapEndpoint<DeleteCidadeEndpoint>();
+
+            var usuariosGroup = endpoints.MapGroup("/")
+                .WithTags("Usuários");
+            usuariosGroup.MapIdentityApi<Usuario>();
+            usuariosGroup.MapEndpoint<LogoutEndpoint>();
+            usuariosGroup.MapEndpoint<GetRolesEndpoint>();
         }
 
         private static IEndpointRouteBuilder MapEndpoint<TEndpoint>(this IEndpointRouteBuilder builder)
