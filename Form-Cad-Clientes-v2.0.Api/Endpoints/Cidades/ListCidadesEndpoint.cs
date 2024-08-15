@@ -1,5 +1,4 @@
 using Formulario.Api.Interfaces;
-using Formulario.Api.Services;
 using Formulario.Core.Responses;
 
 namespace Formulario.Api.Endpoints.Cidades

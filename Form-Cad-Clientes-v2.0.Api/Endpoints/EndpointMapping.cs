@@ -20,18 +20,18 @@ namespace Formulario.Api.Endpoints
             var clientesGroup = endpoints.MapGroup("/")
                 .WithTags("Clientes");
                 // .RequireAuthorization();
-            clientesGroup.MapEndpoint<CreateClienteEndpoint>();
-            clientesGroup.MapEndpoint<ListClientesEndpoint>();
             clientesGroup.MapEndpoint<GetClienteByIdEndpoint>();
+            clientesGroup.MapEndpoint<ListClientesEndpoint>();
+            clientesGroup.MapEndpoint<CreateClienteEndpoint>();
             clientesGroup.MapEndpoint<UpdateClienteEndpoint>();
             clientesGroup.MapEndpoint<DeleteClienteEndpoint>();
 
             var cidadesGroup = endpoints.MapGroup("/")
                 .WithTags("Cidades");
                 // .RequireAuthorization();
-            cidadesGroup.MapEndpoint<CreateCidadeEndpoint>();
             cidadesGroup.MapEndpoint<ListCidadesEndpoint>();
             cidadesGroup.MapEndpoint<GetCidadeByIdEndpoint>();
+            cidadesGroup.MapEndpoint<CreateCidadeEndpoint>();
             cidadesGroup.MapEndpoint<UpdateCidadeEndpoint>();
             cidadesGroup.MapEndpoint<DeleteCidadeEndpoint>();
 
@@ -40,6 +40,8 @@ namespace Formulario.Api.Endpoints
             usuariosGroup.MapIdentityApi<Usuario>();
             usuariosGroup.MapEndpoint<LogoutEndpoint>();
             usuariosGroup.MapEndpoint<GetRolesEndpoint>();
+
+
         }
 
         private static IEndpointRouteBuilder MapEndpoint<TEndpoint>(this IEndpointRouteBuilder builder)

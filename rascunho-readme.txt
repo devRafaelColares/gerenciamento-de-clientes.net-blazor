@@ -268,3 +268,5 @@ docker-compose up -d
     </div>
 </body>
 </html>
+ 
+ rota para testar com swagger: http://localhost:5176/swagger/index.html
