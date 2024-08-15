@@ -28,11 +28,11 @@ Theme="Configuration.Theme"/>
         if (firstRender)
         {
             _isDarkMode = await _mudThemeProvider.GetSystemPreference();
-            await _mudThemeProvider.WatchSystemPreference(OnSystemPreferenceChange);
+            await _mudThemeProvider.WatchSystemPreference(OnSystemPreferenceChanged);
             StateHasChanged();
         }
     }
-    private Task OnSystemPreferenceChange(bool newValue)
+    private Task OnSystemPreferenceChanged(bool newValue)
     {
         _isDarkMode = newValue;
         StateHasChanged();

@@ -30,7 +30,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // Endpoint PUT /Clientes
-app.MapPut("/Clientes", async (Request request, AppDbContext context) =>
+app.MapPost("/Clientes", async (Request request, AppDbContext context) =>
 {
     // Verificar se a cidade existe no banco de dados
     var cidade = await context.Cidades
