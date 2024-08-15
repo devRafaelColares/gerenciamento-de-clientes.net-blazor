@@ -9,7 +9,7 @@ namespace Formulario.Api.Endpoints.Clientes
     {
         public void Map(IEndpointRouteBuilder app)
         {
-            app.MapPut("/{id}", HandleAsync)
+            app.MapPut("clientes/{id}", HandleAsync)
                 .WithName("Update Cliente")
                 .WithSummary("Atualiza um cliente existente")
                 .WithDescription("Atualiza as informações de um cliente no banco de dados")

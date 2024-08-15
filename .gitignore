@@ -1,0 +1,19 @@
+# Diretórios de compilação
+bin/
+obj/
+
+# Arquivos de configuração do ambiente de desenvolvimento
+*.user
+*.suo
+*.vs
+*.vscode
+
+# Arquivos de logs
+*.log
+
+# Arquivos de pacotes gerenciados
+*.nupkg
+*.snupkg
+
+# Diretórios de dependências
+node_modules/

@@ -8,7 +8,7 @@ namespace Formulario.Api.Endpoints.Clientes
     {
         public void Map(IEndpointRouteBuilder app)
         {
-            app.MapGet("/", HandleAsync)
+            app.MapGet("clientes/", HandleAsync)
                 .WithName("List Clientes")
                 .WithSummary("Retorna a lista de clientes")
                 .Produces<List<ClienteResponse>>();

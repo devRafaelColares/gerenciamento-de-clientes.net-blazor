@@ -9,7 +9,7 @@ namespace Formulario.Api.Endpoints.Cidades
     {
         public void Map(IEndpointRouteBuilder app)
         {
-            app.MapPost("/", HandleAsync)
+            app.MapPost("cidades/", HandleAsync)
                 .WithName("Create Cidade")
                 .WithSummary("Cria uma nova cidade")
                 .WithDescription("Cria uma nova cidade no banco de dados")
@@ -22,7 +22,7 @@ namespace Formulario.Api.Endpoints.Cidades
         {
             var result = await cidadeService.CreateAsync(request);
             return result.IsSuccess
-                ? TypedResults.Created($"/v1/cidades/{result.Data?.Id}", result)
+                ? TypedResults.Created($"/cidades/{result.Data?.Id}", result)
                 : TypedResults.BadRequest(result);
         }
     }

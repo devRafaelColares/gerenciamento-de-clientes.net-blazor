@@ -7,7 +7,7 @@ namespace Formulario.Api.Endpoints.Clientes
     {
         public void Map(IEndpointRouteBuilder app)
         {
-            app.MapDelete("/{id}", HandleAsync)
+            app.MapDelete("clientes/{id}", HandleAsync)
                 .WithName("Delete Cliente")
                 .WithSummary("Deleta um cliente")
                 .WithDescription("Deleta um cliente do banco de dados")

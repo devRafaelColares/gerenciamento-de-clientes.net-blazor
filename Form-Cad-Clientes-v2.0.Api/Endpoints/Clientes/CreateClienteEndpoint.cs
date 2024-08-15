@@ -9,7 +9,7 @@ namespace Formulario.Api.Endpoints.Clientes
     {
         public void Map(IEndpointRouteBuilder app)
         {
-            app.MapPost("/", HandleAsync)
+            app.MapPost("clientes/", HandleAsync)
                 .WithName("Create Cliente")
                 .WithSummary("Cria um novo cliente")
                 .WithDescription("Cria um novo cliente no banco de dados")
@@ -24,7 +24,7 @@ namespace Formulario.Api.Endpoints.Clientes
             // Não é necessário definir UserId no CreateClienteRequest
             var result = await clienteService.CreateAsync(request);
             return result.IsSuccess
-                ? TypedResults.Created($"/v1/clientes/{result.Data?.Codigo}", result)
+                ? TypedResults.Created($"/clientes/{result.Data?.Codigo}", result)
                 : TypedResults.BadRequest(result);
         }
     }

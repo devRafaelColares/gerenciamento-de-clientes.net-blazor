@@ -9,7 +9,7 @@ namespace Formulario.Api.Endpoints.Cidades
     {
         public void Map(IEndpointRouteBuilder app)
         {
-            app.MapPut("/{id}", HandleAsync)
+            app.MapPut("cidades/{id}", HandleAsync)
                 .WithName("Update Cidade")
                 .WithSummary("Atualiza uma cidade existente")
                 .WithDescription("Atualiza as informações de uma cidade no banco de dados")

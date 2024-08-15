@@ -7,7 +7,7 @@ namespace Formulario.Api.Endpoints.Cidades
     {
         public void Map(IEndpointRouteBuilder app)
         {
-            app.MapDelete("/{id}", HandleAsync)
+            app.MapDelete("cidades/{id}", HandleAsync)
                 .WithName("Delete Cidade")
                 .WithSummary("Deleta uma cidade")
                 .WithDescription("Deleta uma cidade do banco de dados")

@@ -8,7 +8,7 @@ namespace Formulario.Api.Endpoints.Clientes
     {
         public void Map(IEndpointRouteBuilder app)
         {
-            app.MapGet("/{id}", HandleAsync)
+            app.MapGet("clientes/{id}", HandleAsync)
                 .WithName("Get Cliente By Id")
                 .WithSummary("Retorna um cliente específico")
                 .Produces<ClienteResponse>();

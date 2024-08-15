@@ -8,7 +8,7 @@ namespace Formulario.Api.Endpoints.Cidades
     {
         public void Map(IEndpointRouteBuilder app)
         {
-            app.MapGet("/", HandleAsync)
+            app.MapGet("cidades/", HandleAsync)
                 .WithName("List Cidades")
                 .WithSummary("Retorna a lista de cidades")
                 .Produces<List<CidadeDetalhesResponse>>();

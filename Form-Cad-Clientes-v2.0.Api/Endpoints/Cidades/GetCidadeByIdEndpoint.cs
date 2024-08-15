@@ -8,7 +8,7 @@ namespace Formulario.Api.Endpoints.Cidades
     {
         public void Map(IEndpointRouteBuilder app)
         {
-            app.MapGet("/{id}", HandleAsync)
+            app.MapGet("cidades/{id}", HandleAsync)
                 .WithName("Get Cidade By Id")
                 .WithSummary("Retorna uma cidade específica")
                 .Produces<CidadeDetalhesResponse>();
