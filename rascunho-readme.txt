@@ -42,6 +42,7 @@
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
+            overflow-x: auto;
         }
         code {
             font-family: monospace;
@@ -58,7 +59,7 @@
     <div class="container">
         <div class="content">
             <h2>Introdução</h2>
-            <p>Este documento fornece uma visão geral detalhada da API para gerenciar clientes e cidades. A API foi desenvolvida usando ASP.NET Core e fornece operações CRUD (Criar, Ler, Atualizar e Deletar) para as entidades <code>Clientes</code> e <code>Cidades</code>.</p>
+            <p>Este documento fornece uma visão geral detalhada da API para gerenciar clientes e cidades. A API foi desenvolvida usando ASP.NET Core e oferece operações CRUD (Criar, Ler, Atualizar e Deletar) para as entidades <code>Clientes</code> e <code>Cidades</code>.</p>
 
             <h2>Endpoints da API</h2>
 
@@ -228,43 +229,42 @@ dotnet user-secrets set "ConnectionStrings:DefaultConnection" "SuaStringDeConexa
 docker-compose up -d
             </code></pre>
 
-            <h2>Conclusão</h2>
-            <p>Esta API fornece uma maneira robusta e escalável para gerenciar clientes e cidades, permitindo operações básicas de CRUD através de uma interface RESTful. Se você tiver alguma dúvida ou precisar de mais informações, sinta-se à vontade para entrar em contato.</p>
+            <h2>Estrutura do Projeto</h2>
+            <p>Abaixo está a estrutura do projeto para ajudar na navegação:</p>
+            <pre><code>
+/Formulario.Api
+    /Data
+        AppDbContext.cs
+        CidadesMapping.cs
+        ClientesMapping.cs
+    /Controllers
+        ClientesController.cs
+        CidadesController.cs
+    /Models
+        Cidade.cs
+        Cliente.cs
+    /Migrations
+    Program.cs
+    Startup.cs
+
+/Formulario.Core
+    /Entities
+        Cidade.cs
+        Cliente.cs
+    /Interfaces
+    /Services
+    /Repositories
+    /DTO
+        ClienteDto.cs
+        CidadeDto.cs
+    /Extensions
+        ServiceExtensions.cs
+    /Configurations
+        AppSettings.cs
+    /Helpers
+        Mappers.cs
+            </code></pre>
         </div>
     </div>
 </body>
 </html>
-
-/Formulario.Api
-    /Data
-        AppDbContext.cs
-    /Endpoints
-        /Clientes
-            ClienteEndpoints.cs
-        /Cidades
-            CidadeEndpoints.cs
-    /Interfaces
-        IClienteService.cs
-        ICidadeService.cs
-    /Services
-        ClienteService.cs
-        CidadeService.cs
-    Program.cs
-/Formularios.Core
-    /Models
-        Cliente.cs
-        Cidade.cs
-    /Responses
-        ClienteResponse.cs
-        CidadeDetalhesResponse.cs
-    /Requests
-        CreateClienteRequest.cs
-        UpdateClienteRequest.cs
-        DeleteClienteRequest.cs
-        GetClienteByIdRequest.cs
-        GetAllClientesRequest.cs
-        CreateCidadeRequest.cs
-        UpdateCidadeRequest.cs
-        DeleteCidadeRequest.cs
-        GetCidadeByIdRequest.cs
-        GetAllCidadesRequest.cs
