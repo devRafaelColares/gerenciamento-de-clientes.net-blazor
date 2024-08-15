@@ -1,33 +1,20 @@
-using Formulario.Api.Data;
+using Formulario.Api.Common.Api;
 using Formulario.Api.Interfaces;
-using Formulario.Api.Models;
-using Formulario.Api.Services;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.AddConfiguration();
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString));
+builder.AddSecurity();
 
-builder.Services.AddIdentityCore<Usuario>()
-    .AddRoles<IdentityRole<long>>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddApiEndpoints();
+builder.AddDataContexts();
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.AddCrossOrigin();
 
-builder.Services.AddScoped<ICidadeService, CidadeService>();
-builder.Services.AddScoped<IClienteService, ClienteService>();
+builder.AddDocumentaition();
 
-builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme).AddIdentityCookies();
-builder.Services.AddAuthorization();
-builder.Services.AddCors();
-
+builder.AddScopeds();
 
 var app = builder.Build();
 
