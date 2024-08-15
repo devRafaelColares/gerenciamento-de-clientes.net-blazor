@@ -17,3 +17,13 @@ obj/
 
 # Diretórios de dependências
 node_modules/
+
+# Arquivos de build de ASP.NET
+*.dll
+*.pdb
+*.deps.json
+
+# Arquivos de build do Blazor
+*.wasm
+*.gz
+*.json

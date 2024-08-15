@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../buildMultiTargeting/Form-Cad-Clientes-v2.0.props" />
-</Project>

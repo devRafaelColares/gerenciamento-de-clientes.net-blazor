@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Formulario.Api.Data.Mappings;
+namespace Formulario.Api.Data.Mappings.Identity;
 
 public class IdentityUsuarioMapping : IEntityTypeConfiguration<Usuario>
 {
