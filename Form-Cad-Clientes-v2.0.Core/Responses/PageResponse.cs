@@ -1,5 +1,7 @@
 namespace Formulario.Core.Responses;
 
+// Concluir a paginação assim que possivél!
+// Falta a implementação da paginação no service e ajustes!
 public class PageResponse<TData> : Response<TData>
 {
     public int PageNumber { get; set; }

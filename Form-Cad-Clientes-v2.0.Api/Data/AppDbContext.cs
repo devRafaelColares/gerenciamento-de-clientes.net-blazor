@@ -1,14 +1,23 @@
 using Formulario.Core.Models;
 using Formulario.Api.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Formulario.Api.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Formulario.Api.Data;
 
-public class AppDbContext : DbContext
+public class AppDbContext(DbContextOptions<AppDbContext> options) 
+    : IdentityDbContext<
+        Usuario,
+        IdentityRole<long>, long,
+        IdentityUserClaim<long>,
+        IdentityUserRole<long>,
+        IdentityUserLogin<long>,
+        IdentityRoleClaim<long>,
+        IdentityUserToken<long>
+        >(options)
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-    {
-    }
 
     public DbSet<Clientes> Clientes { get; set; }
     public DbSet<Cidades> Cidades { get; set; }
