@@ -1,10 +1,14 @@
 using MudBlazor;
+using MudBlazor.Utilities;
 
 namespace Form_Cad_Clientes_v2._0.Web;
 
 public static class Configuration
 {
-        public static MudTheme Theme = new()
+    public const string HttpClient = "Form-Cad-Clientes-v2.0.Web.HttpClient";
+
+    public static string BackendUrl = "http://localhost:5176";
+    public static MudTheme Theme = new()
     {
         Typography = new Typography
         {
@@ -15,15 +19,15 @@ public static class Configuration
         },
         Palette = new PaletteLight
         {
-            Primary = Colors.LightGreen.Accent3,
+            Primary = new MudColor("#1EFA2D"),
+            PrimaryContrastText = new MudColor("#000000"),
             Secondary = Colors.LightGreen.Darken3,
             Background = Colors.Grey.Lighten4,
+            AppbarBackground = new MudColor("#1EFA2D"),
             AppbarText = Colors.Shades.Black,
-            AppbarBackground = Colors.LightGreen.Accent3,
             TextPrimary = Colors.Shades.Black,
-            PrimaryContrastText = Colors.Shades.Black,
-            DrawerText = Colors.Shades.Black,
-            DrawerBackground = Colors.LightGreen.Lighten4,
+            DrawerText = Colors.Shades.White,
+            DrawerBackground = Colors.Green.Darken4
         },
         PaletteDark = new PaletteDark
         {
