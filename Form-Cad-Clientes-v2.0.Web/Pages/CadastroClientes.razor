@@ -1,0 +1,93 @@
+@page "/cadastro"
+
+@inject HttpClient Http
+
+<h3>Cadastro de Clientes</h3>
+
+<MudForm>
+    <MudTextField Label="Nome" @bind-Value="cliente.Nome" />
+    <MudTextField Label="Telefone" @bind-Value="cliente.Telefone" />
+    <MudTextField Label="Foto" @bind-Value="cliente.Foto" />
+    <MudTextField Label="Sexo" @bind-Value="cliente.Sexo" />
+    <MudTextField Label="Cidade" @bind-Value="cliente.Cidade.Nome" />
+    <MudTextField Label="Estado" @bind-Value="cliente.Cidade.Estado" />
+    <MudButton OnClick="Salvar">Salvar</MudButton>
+</MudForm>
+
+@if (clientes == null)
+{
+    <p><em>Carregando...</em></p>
+}
+else
+{
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Foto</th>
+                <th>Sexo</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th>Data de Criação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in clientes)
+            {
+                <tr>
+                    <td>@cliente.Codigo</td>
+                    <td>@cliente.Nome</td>
+                    <td>@cliente.Telefone</td>
+                    <td>@cliente.Foto</td>
+                    <td>@cliente.Sexo</td>
+                    <td>@cliente.Cidade.Nome</td>
+                    <td>@cliente.Cidade.Estado</td>
+                    <td>@cliente.CreatedAt</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Cliente> clientes;
+    private Cliente cliente = new Cliente();
+
+    protected override async Task OnInitializedAsync()
+    {
+        clientes = await Http.GetFromJsonAsync<List<Cliente>>("http://localhost:5176/clientes");
+    }
+
+    private async Task Salvar()
+    {
+        var response = await Http.PostAsJsonAsync("http://localhost:5176/clientes", cliente);
+
+        if (response.IsSuccessStatusCode)
+        {
+            clientes = await Http.GetFromJsonAsync<List<Cliente>>("http://localhost:5176/clientes");
+        }
+        else
+        {
+            Console.WriteLine("Erro ao salvar o cliente");
+        }
+    }
+
+    public class Cliente
+    {
+        public long Codigo { get; set; }
+        public string Nome { get; set; } = "";
+        public string Telefone { get; set; } = "";
+        public string Foto { get; set; } = "";
+        public string Sexo { get; set; } = "";
+        public Cidade Cidade { get; set; } = new Cidade();
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+    }
+
+    public class Cidade
+    {
+        public string Nome { get; set; } = "";
+        public string Estado { get; set; } = "";
+    }
+}
