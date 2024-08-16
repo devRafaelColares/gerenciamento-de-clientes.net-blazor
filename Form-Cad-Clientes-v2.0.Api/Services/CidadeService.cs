@@ -3,9 +3,6 @@ using Formulario.Core.Requests;
 using Formulario.Core.Responses;
 using Formulario.Core.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Formulario.Core;
 using Formulario.Api.Data;
 

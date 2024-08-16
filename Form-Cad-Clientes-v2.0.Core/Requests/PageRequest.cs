@@ -1,6 +1,6 @@
 using Formulario.Core.Requests.Usuario;
 
-namespace Dima.Core.Requests
+namespace Formulario.Core.Requests
 {
     public abstract class PagedRequest : UsuarioRequest
     {

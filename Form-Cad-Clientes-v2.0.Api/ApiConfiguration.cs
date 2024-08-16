@@ -1,4 +1,4 @@
-namespace Dima.Api;
+namespace Formulario.Api;
 
 public static class ApiConfiguration
 {
