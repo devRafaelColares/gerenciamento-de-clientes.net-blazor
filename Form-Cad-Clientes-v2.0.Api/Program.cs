@@ -1,3 +1,4 @@
+using Formulario.Api;
 using Formulario.Api.Common.Api;
 using Formulario.Api.Interfaces;
 using System.Reflection;
@@ -25,7 +26,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+app.UseCors(ApiConfiguration.CorsPolicyName);
 
 
 foreach (var endpoint in Assembly.GetExecutingAssembly().GetTypes()

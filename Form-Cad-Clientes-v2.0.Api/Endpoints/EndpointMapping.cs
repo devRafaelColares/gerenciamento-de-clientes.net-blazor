@@ -37,6 +37,7 @@ namespace Formulario.Api.Endpoints
 
             var usuariosGroup = endpoints.MapGroup("/")
                 .WithTags("Usuários");
+            usuariosGroup.MapEndpoint<LoginEndpoint>();
             usuariosGroup.MapIdentityApi<Usuario>();
             usuariosGroup.MapEndpoint<LogoutEndpoint>();
             usuariosGroup.MapEndpoint<GetRolesEndpoint>();
