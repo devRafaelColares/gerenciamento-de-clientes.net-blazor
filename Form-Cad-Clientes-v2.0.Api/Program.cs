@@ -20,15 +20,13 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.ConfigureDevEnvironment();
 }
 
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-app.UseAuthentication();
-app.UseAuthorization();
+
 
 foreach (var endpoint in Assembly.GetExecutingAssembly().GetTypes()
     .Where(t => typeof(IEndpoint).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract)
