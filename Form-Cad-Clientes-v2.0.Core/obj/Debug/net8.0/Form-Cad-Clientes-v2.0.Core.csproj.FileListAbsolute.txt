@@ -9,3 +9,15 @@
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Core/obj/Debug/net8.0/refint/Form-Cad-Clientes-v2.0.Core.dll
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Core/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.Core.pdb
 /home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Core/obj/Debug/net8.0/ref/Form-Cad-Clientes-v2.0.Core.dll
+/home/rafael/PRIME-TECNOLOGIA/projetos-de-estudos/gerenciamento-de-clientes.net-blazor/Form-Cad-Clientes-v2.0.Core/bin/Debug/net8.0/Form-Cad-Clientes-v2.0.Core.deps.json
+/home/rafael/PRIME-TECNOLOGIA/projetos-de-estudos/gerenciamento-de-clientes.net-blazor/Form-Cad-Clientes-v2.0.Core/bin/Debug/net8.0/Form-Cad-Clientes-v2.0.Core.dll
+/home/rafael/PRIME-TECNOLOGIA/projetos-de-estudos/gerenciamento-de-clientes.net-blazor/Form-Cad-Clientes-v2.0.Core/bin/Debug/net8.0/Form-Cad-Clientes-v2.0.Core.pdb
+/home/rafael/PRIME-TECNOLOGIA/projetos-de-estudos/gerenciamento-de-clientes.net-blazor/Form-Cad-Clientes-v2.0.Core/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/rafael/PRIME-TECNOLOGIA/projetos-de-estudos/gerenciamento-de-clientes.net-blazor/Form-Cad-Clientes-v2.0.Core/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.Core.AssemblyInfoInputs.cache
+/home/rafael/PRIME-TECNOLOGIA/projetos-de-estudos/gerenciamento-de-clientes.net-blazor/Form-Cad-Clientes-v2.0.Core/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.Core.AssemblyInfo.cs
+/home/rafael/PRIME-TECNOLOGIA/projetos-de-estudos/gerenciamento-de-clientes.net-blazor/Form-Cad-Clientes-v2.0.Core/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.Core.csproj.CoreCompileInputs.cache
+/home/rafael/PRIME-TECNOLOGIA/projetos-de-estudos/gerenciamento-de-clientes.net-blazor/Form-Cad-Clientes-v2.0.Core/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.Core.sourcelink.json
+/home/rafael/PRIME-TECNOLOGIA/projetos-de-estudos/gerenciamento-de-clientes.net-blazor/Form-Cad-Clientes-v2.0.Core/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.Core.dll
+/home/rafael/PRIME-TECNOLOGIA/projetos-de-estudos/gerenciamento-de-clientes.net-blazor/Form-Cad-Clientes-v2.0.Core/obj/Debug/net8.0/refint/Form-Cad-Clientes-v2.0.Core.dll
+/home/rafael/PRIME-TECNOLOGIA/projetos-de-estudos/gerenciamento-de-clientes.net-blazor/Form-Cad-Clientes-v2.0.Core/obj/Debug/net8.0/Form-Cad-Clientes-v2.0.Core.pdb
+/home/rafael/PRIME-TECNOLOGIA/projetos-de-estudos/gerenciamento-de-clientes.net-blazor/Form-Cad-Clientes-v2.0.Core/obj/Debug/net8.0/ref/Form-Cad-Clientes-v2.0.Core.dll

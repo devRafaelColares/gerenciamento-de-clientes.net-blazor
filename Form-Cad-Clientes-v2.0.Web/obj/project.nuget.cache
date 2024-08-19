@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tH8xNkWjWx8=",
+  "dgSpecHash": "poJhlptXkIw=",
   "success": true,
-  "projectFilePath": "/home/rafael/DLINK-SISTEMAS/Form-Cad-Clientes-v2.0/Form-Cad-Clientes-v2.0.Web/Form-Cad-Clientes-v2.0.Web.csproj",
+  "projectFilePath": "/home/rafael/PRIME-TECNOLOGIA/projetos-de-estudos/gerenciamento-de-clientes.net-blazor/Form-Cad-Clientes-v2.0.Web/Form-Cad-Clientes-v2.0.Web.csproj",
   "expectedPackageFiles": [
     "/home/rafael/.nuget/packages/microsoft.aspnetcore.authorization/8.0.7/microsoft.aspnetcore.authorization.8.0.7.nupkg.sha512",
     "/home/rafael/.nuget/packages/microsoft.aspnetcore.components/8.0.7/microsoft.aspnetcore.components.8.0.7.nupkg.sha512",
@@ -30,13 +30,13 @@
     "/home/rafael/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "/home/rafael/.nuget/packages/microsoft.jsinterop/8.0.7/microsoft.jsinterop.8.0.7.nupkg.sha512",
     "/home/rafael/.nuget/packages/microsoft.jsinterop.webassembly/8.0.7/microsoft.jsinterop.webassembly.8.0.7.nupkg.sha512",
-    "/home/rafael/.nuget/packages/microsoft.net.illink.tasks/8.0.7/microsoft.net.illink.tasks.8.0.7.nupkg.sha512",
-    "/home/rafael/.nuget/packages/microsoft.net.sdk.webassembly.pack/8.0.7/microsoft.net.sdk.webassembly.pack.8.0.7.nupkg.sha512",
+    "/home/rafael/.nuget/packages/microsoft.net.illink.tasks/8.0.8/microsoft.net.illink.tasks.8.0.8.nupkg.sha512",
+    "/home/rafael/.nuget/packages/microsoft.net.sdk.webassembly.pack/8.0.8/microsoft.net.sdk.webassembly.pack.8.0.8.nupkg.sha512",
     "/home/rafael/.nuget/packages/mudblazor/6.19.1/mudblazor.6.19.1.nupkg.sha512",
     "/home/rafael/.nuget/packages/system.io.pipelines/8.0.0/system.io.pipelines.8.0.0.nupkg.sha512",
     "/home/rafael/.nuget/packages/system.text.encodings.web/8.0.0/system.text.encodings.web.8.0.0.nupkg.sha512",
     "/home/rafael/.nuget/packages/system.text.json/8.0.0/system.text.json.8.0.0.nupkg.sha512",
-    "/home/rafael/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.7/microsoft.netcore.app.runtime.mono.browser-wasm.8.0.7.nupkg.sha512"
+    "/home/rafael/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.8/microsoft.netcore.app.runtime.mono.browser-wasm.8.0.8.nupkg.sha512"
   ],
   "logs": []
 }
