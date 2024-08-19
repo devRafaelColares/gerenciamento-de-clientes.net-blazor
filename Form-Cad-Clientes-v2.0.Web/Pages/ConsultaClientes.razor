@@ -1,6 +1,5 @@
 @page "/consulta"
 @inject ClientesService ClientesService
-@using Formulario.Core
 @using MudBlazor
 
 <PageTitle>Consulta de Clientes</PageTitle>
@@ -38,21 +37,33 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var response = await ClientesService.GetClientes();
+        try
+        {
+            var clientes = await ClientesService.GetClientes();
+            _clientes = MapClientesToCliente(clientes);
+        }
+        catch (Exception ex)
+        {
+            _errorMessage = $"Erro: {ex.Message}";
+        }
+    }
 
-        if (response.IsSuccess && response.Data is not null)
+    private List<Cliente> MapClientesToCliente(List<Formulario.Core.Models.Clientes> clientes)
+    {
+        return clientes.Select(c => new Cliente
         {
-            _clientes = JsonSerializer.Deserialize<List<Cliente>>(response.Data);
-        }
-        else
-        {
-            _errorMessage = $"Erro: {response.ErrorMessage}";
-        }
+            Codigo = c.Codigo,
+            Nome = c.Nome,
+            Telefone = c.Telefone,
+            Foto = c.Foto,
+            Sexo = c.Sexo,
+            CreatedAt = c.CreatedAt
+        }).ToList();
     }
 
     public class Cliente
     {
-        public int Codigo { get; set; }
+        public long Codigo { get; set; }
         public string Nome { get; set; } = string.Empty;
         public string Telefone { get; set; } = string.Empty;
         public string Foto { get; set; } = string.Empty;
@@ -60,4 +71,3 @@
         public DateTime CreatedAt { get; set; }
     }
 }
-

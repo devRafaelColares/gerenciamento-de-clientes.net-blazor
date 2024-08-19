@@ -1,27 +1,29 @@
 using System.Net.Http.Json;
-using Formulario.Core;
+using Formulario.Core.Models;
 
-namespace Form_Cad_Clientes_v2._0.Web.Service;
-
-public class ClientesService
+namespace Form_Cad_Clientes_v2._0.Web.Service
 {
-    private readonly HttpClient _httpClient;
-
-    public ClientesService(IHttpClientFactory httpClientFactory)
+    public class ClientesService
     {
-        _httpClient = httpClientFactory.CreateClient(Configuration.HttpClient);
-    }
+        private readonly HttpClient _httpClient;
 
-    public async Task<Response<string>> GetClientes()
-    {
-        try
+        public ClientesService(IHttpClientFactory httpClientFactory)
         {
-            var response = await _httpClient.GetFromJsonAsync<Response<string>>("clientes");
-            return response ?? new Response<string>(false, null, "Nenhum dado encontrado.", 404);
+            _httpClient = httpClientFactory.CreateClient("HttpClientName");
         }
-        catch (Exception ex)
+
+        public async Task<List<Clientes>> GetClientes()
         {
-            return new Response<string>(false, null, $"Erro ao obter clientes: {ex.Message}", 500);
+            try
+            {
+                var clientes = await _httpClient.GetFromJsonAsync<List<Clientes>>("http://localhost:5176/clientes");
+                return clientes ?? new List<Clientes>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao obter clientes: {ex.Message}");
+                return new List<Clientes>();
+            }
         }
     }
 }
