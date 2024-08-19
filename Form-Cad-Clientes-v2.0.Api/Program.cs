@@ -1,25 +1,21 @@
+using System.Reflection;
 using Formulario.Api;
 using Formulario.Api.Common.Api;
 using Formulario.Api.Interfaces;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddConfiguration();
-
 builder.AddSecurity();
-
 builder.AddDataContexts();
-
-builder.AddCrossOrigin();
-
+builder.AddCrossOrigin(); // Configuração do CORS
 builder.AddDocumentaition();
-
 builder.AddScopeds();
 
 var app = builder.Build();
 
-app.UseCors("AllowAll");
+// Aplicar a política de CORS
+app.UseCors(ApiConfiguration.CorsPolicyName);
 
 if (app.Environment.IsDevelopment())
 {
@@ -28,7 +24,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-app.UseCors(ApiConfiguration.CorsPolicyName);
+app.UseAuthentication(); // Adicionar autenticação se necessário
+app.UseAuthorization(); // Adicionar autorização se necessário
 
 
 foreach (var endpoint in Assembly.GetExecutingAssembly().GetTypes()

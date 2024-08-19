@@ -1,3 +1,5 @@
+namespace Formulario.Core.Requests.Clientes;
+
 public class CreateClienteRequest
 {
     public string Nome { get; set; } = string.Empty;

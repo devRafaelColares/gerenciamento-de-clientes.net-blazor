@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Form_Cad_Clientes_v2._0.Web;
 using MudBlazor.Services;
+using Form_Cad_Clientes_v2._0.Web.Service;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
@@ -16,6 +17,9 @@ builder.Services.AddMudServices();
 builder.Services.AddHttpClient(Configuration.HttpClient, options => {
     options.BaseAddress = new Uri(Configuration.BackendUrl);
 });
-
+// .AddHttpMessageHandler<CookieHandler>();
 // Executa a aplicação
+
+builder.Services.AddScoped<ClientesService>();
+
 await builder.Build().RunAsync();

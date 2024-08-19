@@ -1,7 +1,5 @@
 @page "/cadastro"
 
-@inject HttpClient Http
-
 <h3>Cadastro de Clientes</h3>
 
 <MudForm>
@@ -55,19 +53,10 @@ else
     private List<Cliente> clientes;
     private Cliente cliente = new Cliente();
 
-protected override async Task OnInitializedAsync()
-{
-    try
+    protected override async Task OnInitializedAsync()
     {
         clientes = await Http.GetFromJsonAsync<List<Cliente>>("http://localhost:5176/clientes");
-        Console.WriteLine("Clientes carregados com sucesso.");
     }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Erro ao carregar clientes: {ex.Message}");
-    }
-}
-
 
     private async Task Salvar()
     {
@@ -96,7 +85,6 @@ protected override async Task OnInitializedAsync()
 
     public class Cidade
     {
-        public long Id { get; set; }
         public string Nome { get; set; } = "";
         public string Estado { get; set; } = "";
     }

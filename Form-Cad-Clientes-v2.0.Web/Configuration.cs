@@ -7,7 +7,7 @@ public static class Configuration
 {
     public const string HttpClient = "Form-Cad-Clientes-v2.0.Web.HttpClient";
 
-    public static string BackendUrl = "http://localhost:5176";
+    public static string BackendUrl  {get; set;} = "http://localhost:5176";
     public static MudTheme Theme = new()
     {
         Typography = new Typography

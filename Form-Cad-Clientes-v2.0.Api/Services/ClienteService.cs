@@ -5,6 +5,7 @@ using Formulario.Core.DTOs;
 using Formulario.Core.Requests;
 using Formulario.Core.Models;
 using Formulario.Core;
+using Formulario.Core.Requests.Clientes;
 
 namespace Formulario.Api.Services
 {

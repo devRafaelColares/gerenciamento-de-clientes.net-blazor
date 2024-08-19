@@ -1,6 +1,7 @@
 using Formulario.Core;
 using Formulario.Core.DTOs;
 using Formulario.Core.Requests;
+using Formulario.Core.Requests.Clientes;
 
 
 namespace Formulario.Api.Interfaces

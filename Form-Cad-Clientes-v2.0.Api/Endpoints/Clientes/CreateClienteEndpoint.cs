@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using Formulario.Api.Interfaces;
+using Formulario.Core.Requests.Clientes;
 using Formulario.Core.Responses;
 
 namespace Formulario.Api.Endpoints.Clientes
