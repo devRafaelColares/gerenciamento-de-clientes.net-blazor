@@ -1,5 +1,5 @@
 using System.Net.Http.Json;
-using Formulario.Core.Models;
+using Form_Cad_Clientes_v2._0.Web.Models;
 
 namespace Form_Cad_Clientes_v2._0.Web.Service
 {
@@ -12,21 +12,21 @@ namespace Form_Cad_Clientes_v2._0.Web.Service
             _httpClient = httpClientFactory.CreateClient("HttpClientName");
         }
 
-        public async Task<List<Clientes>> GetClientes()
+        public async Task<List<Cliente>> GetClientes()
         {
             try
             {
-                var clientes = await _httpClient.GetFromJsonAsync<List<Clientes>>("http://localhost:5176/clientes");
-                return clientes ?? new List<Clientes>();
+                return await _httpClient.GetFromJsonAsync<List<Cliente>>("http://localhost:5176/clientes") 
+                       ?? new List<Cliente>();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Erro ao obter clientes: {ex.Message}");
-                return new List<Clientes>();
+                return new List<Cliente>();
             }
         }
 
-        public async Task<bool> SalvarCliente(Clientes cliente)
+        public async Task<bool> SalvarCliente(Cliente cliente)
         {
             try
             {
@@ -37,6 +37,18 @@ namespace Form_Cad_Clientes_v2._0.Web.Service
             {
                 Console.WriteLine($"Erro ao salvar o cliente: {ex.Message}");
                 return false;
+            }
+        }
+
+        public async Task DeletarCliente(int id)
+        {
+            try
+            {
+                await _httpClient.DeleteAsync($"http://localhost:5176/clientes/{id}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao deletar o cliente: {ex.Message}");
             }
         }
     }

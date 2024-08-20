@@ -1,4 +1,5 @@
 @page "/Clientes"
+@inject ClientesService ClientesService
 
 <PageTitle>Clientes</PageTitle>
 
@@ -24,7 +25,8 @@
                         Variant="Variant.Filled" 
                         StartIcon="@Icons.Material.Filled.Delete" 
                         Color="Color.Error" 
-                        Size="Size.Small">Deletar Cliente
+                        Size="Size.Small"
+                        OnClick="DeletarClientesSelecionados">Deletar Cliente
                     </MudButton>
                 </div>
             </MudStack>
@@ -96,7 +98,7 @@
             <MudTh>Sexo</MudTh>
             <MudTh>Cidade</MudTh>
             <MudTh>Estado</MudTh>
-            <MudTh>Data de Criação</MudTh>
+            <MudTh>Data de Cadastro</MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd>
@@ -127,12 +129,17 @@
     private bool isValid;
     private bool showForm = false;
     private string _errorMessage = string.Empty;
-    
+
     protected override async Task OnInitializedAsync()
+    {
+        await CarregarClientes();
+    }
+
+    private async Task CarregarClientes()
     {
         try
         {
-            _clientes = await Http.GetFromJsonAsync<List<Cliente>>("http://localhost:5176/clientes");
+            _clientes = await ClientesService.GetClientes();
         }
         catch (Exception ex)
         {
@@ -144,29 +151,30 @@
     {
         if (isValid)
         {
-            if (string.IsNullOrWhiteSpace(cliente.Nome) ||
-                string.IsNullOrWhiteSpace(cliente.Telefone) ||
-                string.IsNullOrWhiteSpace(cliente.Foto) ||
-                string.IsNullOrWhiteSpace(cliente.Sexo) ||
-                string.IsNullOrWhiteSpace(cliente.Cidade.Nome) ||
-                string.IsNullOrWhiteSpace(cliente.Cidade.Estado))
-            {
-                Console.WriteLine("Todos os campos obrigatórios devem ser preenchidos.");
-                return;
-            }
+            var sucesso = await ClientesService.SalvarCliente(cliente);
 
-            var response = await Http.PostAsJsonAsync("http://localhost:5176/clientes", cliente);
-
-            if (response.IsSuccessStatusCode)
+            if (sucesso)
             {
-                _clientes = await Http.GetFromJsonAsync<List<Cliente>>("http://localhost:5176/clientes");
+                await CarregarClientes();
                 showForm = false;
             }
             else
             {
-                Console.WriteLine("Erro ao salvar o cliente");
+                _errorMessage = "Erro ao salvar o cliente.";
             }
         }
+    }
+
+    private async Task DeletarClientesSelecionados()
+    {
+        var clientesSelecionados = _clientes.Where(c => c.IsSelected).ToList();
+
+        foreach (var cliente in clientesSelecionados)
+        {
+            await ClientesService.DeletarCliente(cliente.Codigo);
+        }
+
+        await CarregarClientes();
     }
 
     private void ToggleForm()
@@ -177,24 +185,5 @@
     private void ValidateForm()
     {
         isValid = form.IsValid;
-    }
-
-    public class Cliente
-    {
-        public long Codigo { get; set; }
-        public string Nome { get; set; } = "";
-        public string Telefone { get; set; } = "";
-        public string Foto { get; set; } = "";
-        public string Sexo { get; set; } = "";
-        public Cidade Cidade { get; set; } = new Cidade();
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public bool IsSelected { get; set; }
-
-    }
-
-    public class Cidade
-    {
-        public string Nome { get; set; } = "";
-        public string Estado { get; set; } = "";
     }
 }
