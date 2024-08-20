@@ -3,31 +3,35 @@
 <PageTitle>Clientes</PageTitle>
 
 <MudPaper Class="pa-4">
-<MudPaper Class="pa-4" Elevation="1">
+    <MudPaper Class="mud-width-full pa-6 mb-8" Elevation="2">
     <MudGrid>
-        <MudItem xs="12" sm="6" md="6">
-            <MudText Typo="Typo.h6">Consulta de Clientes</MudText>
-        </MudItem>
-        <MudItem xs="12" sm="6" md="6">
-            <MudStack Direction="Row" Spacing="2" AlignItems="AlignItems.Center" JustifyContent="SpaceBetween">
-                <MudButton 
-                    Variant="Variant.Filled" 
-                    StartIcon="@Icons.Material.Filled.Save" 
-                    Color="Color.Info" 
-                    Size="Size.Small" 
-                    OnClick="ToggleForm">Cadastrar Cliente
-                </MudButton>
+        <MudItem xs="12" sm="12" md="12">
+            <MudStack Row="true" Spacing="3">
+                <div>
+                    <MudText Typo="Typo.h6">Consulta de Clientes</MudText>
+                </div>
+                <MudSpacer />
+                <div>
+                    <MudButton 
+                        Variant="Variant.Filled" 
+                        StartIcon="@Icons.Material.Filled.Save" 
+                        Color="Color.Info" 
+                        Size="Size.Small" 
+                        OnClick="ToggleForm">Cadastrar Cliente
+                    </MudButton>
 
-                <MudButton 
-                    Variant="Variant.Filled" 
-                    StartIcon="@Icons.Material.Filled.Delete" 
-                    Color="Color.Error" 
-                    Size="Size.Small">Deletar Cliente
-                </MudButton>
+                    <MudButton 
+                        Variant="Variant.Filled" 
+                        StartIcon="@Icons.Material.Filled.Delete" 
+                        Color="Color.Error" 
+                        Size="Size.Small">Deletar Cliente
+                    </MudButton>
+                </div>
             </MudStack>
         </MudItem>
     </MudGrid>
-</MudPaper>
+
+    </MudPaper>
 
 
     @if (showForm)
@@ -84,6 +88,7 @@
 
     <MudTable Items="_clientes">
         <HeaderContent>
+            <MudTh>Selecionado</MudTh>
             <MudTh>Código</MudTh>
             <MudTh>Nome</MudTh>
             <MudTh>Telefone</MudTh>
@@ -94,6 +99,9 @@
             <MudTh>Data de Criação</MudTh>
         </HeaderContent>
         <RowTemplate>
+            <MudTd>
+            <MudCheckBox @bind-Value="@context.IsSelected" Color="Color.Error" UnCheckedColor="Color.Default"></MudCheckBox>
+            </MudTd>
             <MudTd DataLabel="Código">@context.Codigo</MudTd>
             <MudTd DataLabel="Nome">@context.Nome</MudTd>
             <MudTd DataLabel="Telefone">@context.Telefone</MudTd>
@@ -119,7 +127,7 @@
     private bool isValid;
     private bool showForm = false;
     private string _errorMessage = string.Empty;
-
+    
     protected override async Task OnInitializedAsync()
     {
         try
@@ -180,6 +188,8 @@
         public string Sexo { get; set; } = "";
         public Cidade Cidade { get; set; } = new Cidade();
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public bool IsSelected { get; set; }
+
     }
 
     public class Cidade
