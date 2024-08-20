@@ -70,6 +70,41 @@
                 <MudSelectItem Value="@("Feminino")" />
             </MudSelect>
 
+            <MudSelect 
+                Label="Estado" @bind-Value="cliente.Cidade.Estado" 
+                Required="true"
+                RequiredError="O campo 'Estado' é obrigatório!"
+                T="string"
+            >
+                <MudSelectItem Value="@("AC")">Acre</MudSelectItem>
+                <MudSelectItem Value="@("AL")">Alagoas</MudSelectItem>
+                <MudSelectItem Value="@("AP")">Amapá</MudSelectItem>
+                <MudSelectItem Value="@("AM")">Amazonas</MudSelectItem>
+                <MudSelectItem Value="@("BA")">Bahia</MudSelectItem>
+                <MudSelectItem Value="@("CE")">Ceará</MudSelectItem>
+                <MudSelectItem Value="@("DF")">Distrito Federal</MudSelectItem>
+                <MudSelectItem Value="@("ES")">Espírito Santo</MudSelectItem>
+                <MudSelectItem Value="@("GO")">Goiás</MudSelectItem>
+                <MudSelectItem Value="@("MA")">Maranhão</MudSelectItem>
+                <MudSelectItem Value="@("MT")">Mato Grosso</MudSelectItem>
+                <MudSelectItem Value="@("MS")">Mato Grosso do Sul</MudSelectItem>
+                <MudSelectItem Value="@("MG")">Minas Gerais</MudSelectItem>
+                <MudSelectItem Value="@("PA")">Pará</MudSelectItem>
+                <MudSelectItem Value="@("PB")">Paraíba</MudSelectItem>
+                <MudSelectItem Value="@("PR")">Paraná</MudSelectItem>
+                <MudSelectItem Value="@("PE")">Pernambuco</MudSelectItem>
+                <MudSelectItem Value="@("PI")">Piauí</MudSelectItem>
+                <MudSelectItem Value="@("RJ")">Rio de Janeiro</MudSelectItem>
+                <MudSelectItem Value="@("RN")">Rio Grande do Norte</MudSelectItem>
+                <MudSelectItem Value="@("RS")">Rio Grande do Sul</MudSelectItem>
+                <MudSelectItem Value="@("RO")">Rondônia</MudSelectItem>
+                <MudSelectItem Value="@("RR")">Roraima</MudSelectItem>
+                <MudSelectItem Value="@("SC")">Santa Catarina</MudSelectItem>
+                <MudSelectItem Value="@("SP")">São Paulo</MudSelectItem>
+                <MudSelectItem Value="@("SE")">Sergipe</MudSelectItem>
+                <MudSelectItem Value="@("TO")">Tocantins</MudSelectItem>
+            </MudSelect>
+
             <MudTextField 
                 Label="Cidade" @bind-Value="cliente.Cidade.Nome" 
                 Required="true"
@@ -77,15 +112,18 @@
                 T="string"
             />
 
-            <MudTextField 
-                Label="Estado" @bind-Value="cliente.Cidade.Estado" 
-                Required="true"
-                RequiredError="O campo 'Estado' é obrigatório!"
-                T="string"
-            />
 
-            <MudButton OnClick="Salvar" Disabled="@(!isValid)">Salvar</MudButton>
+            <MudSpacer />
+
         </MudForm>
+        <MudButton 
+            OnClick="Salvar" 
+            Disabled="@(!isValid)"
+            Variant="Variant.Filled" 
+            StartIcon="@Icons.Material.Filled.Save" 
+            Color="Color.Info" 
+            Size="Size.Small" >Salvar
+        </MudButton>
     }
 
     <MudTable Items="_clientes">
@@ -157,6 +195,7 @@
             {
                 await CarregarClientes();
                 showForm = false;
+                cliente = new Cliente();
             }
             else
             {
@@ -179,6 +218,10 @@
 
     private void ToggleForm()
     {
+        if (showForm)
+        {
+            cliente = new Cliente();
+        }
         showForm = !showForm;
     }
 
