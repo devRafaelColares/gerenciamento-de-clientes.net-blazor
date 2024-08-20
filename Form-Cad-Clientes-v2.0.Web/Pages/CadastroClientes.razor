@@ -4,7 +4,7 @@
 
 <h3>Cadastro de Clientes</h3>
 
-<MudForm>
+<MudForm @ref="form" @bind-IsValid="isValid" Validated="ValidateForm">
     <MudTextField 
         Label="Nome" @bind-Value="cliente.Nome" 
         Required="true"
@@ -47,7 +47,7 @@
         T="string"
         />
 
-    <MudButton OnClick="Salvar">Salvar</MudButton>
+    <MudButton OnClick="Salvar" Disabled="@(!isValid)">Salvar</MudButton>
 </MudForm>
 
 @if (clientes == null)
@@ -90,6 +90,8 @@ else
 @code {
     private List<Cliente> clientes;
     private Cliente cliente = new Cliente();
+    private MudForm form;
+    private bool isValid;
 
     protected override async Task OnInitializedAsync()
     {
@@ -98,16 +100,37 @@ else
 
     private async Task Salvar()
     {
-        var response = await Http.PostAsJsonAsync("http://localhost:5176/clientes", cliente);
+        if (isValid)
+        {
+            // Verifica se os campos obrigatórios não estão vazios
+            if (string.IsNullOrWhiteSpace(cliente.Nome) ||
+                string.IsNullOrWhiteSpace(cliente.Telefone) ||
+                string.IsNullOrWhiteSpace(cliente.Foto) ||
+                string.IsNullOrWhiteSpace(cliente.Sexo) ||
+                string.IsNullOrWhiteSpace(cliente.Cidade.Nome) ||
+                string.IsNullOrWhiteSpace(cliente.Cidade.Estado))
+            {
+                // Exibe mensagem de erro se algum campo obrigatório estiver vazio
+                Console.WriteLine("Todos os campos obrigatórios devem ser preenchidos.");
+                return;
+            }
 
-        if (response.IsSuccessStatusCode)
-        {
-            clientes = await Http.GetFromJsonAsync<List<Cliente>>("http://localhost:5176/clientes");
+            var response = await Http.PostAsJsonAsync("http://localhost:5176/clientes", cliente);
+
+            if (response.IsSuccessStatusCode)
+            {
+                clientes = await Http.GetFromJsonAsync<List<Cliente>>("http://localhost:5176/clientes");
+            }
+            else
+            {
+                Console.WriteLine("Erro ao salvar o cliente");
+            }
         }
-        else
-        {
-            Console.WriteLine("Erro ao salvar o cliente");
-        }
+    }
+
+    private void ValidateForm()
+    {
+        isValid = form.IsValid;
     }
 
     public class Cliente
