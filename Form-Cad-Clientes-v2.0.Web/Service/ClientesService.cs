@@ -25,5 +25,19 @@ namespace Form_Cad_Clientes_v2._0.Web.Service
                 return new List<Clientes>();
             }
         }
+
+        public async Task<bool> SalvarCliente(Clientes cliente)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync("http://localhost:5176/clientes", cliente);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao salvar o cliente: {ex.Message}");
+                return false;
+            }
+        }
     }
 }

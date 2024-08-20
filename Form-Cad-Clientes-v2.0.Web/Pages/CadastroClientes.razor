@@ -1,14 +1,52 @@
 @page "/cadastro"
 
+@inject HttpClient Http
+
 <h3>Cadastro de Clientes</h3>
 
 <MudForm>
-    <MudTextField Label="Nome" @bind-Value="cliente.Nome" />
-    <MudTextField Label="Telefone" @bind-Value="cliente.Telefone" />
-    <MudTextField Label="Foto" @bind-Value="cliente.Foto" />
-    <MudTextField Label="Sexo" @bind-Value="cliente.Sexo" />
-    <MudTextField Label="Cidade" @bind-Value="cliente.Cidade.Nome" />
-    <MudTextField Label="Estado" @bind-Value="cliente.Cidade.Estado" />
+    <MudTextField 
+        Label="Nome" @bind-Value="cliente.Nome" 
+        Required="true"
+        RequiredError="O campo 'Nome' é obrigatório!"
+        T="string"
+    />
+
+    <MudTextField 
+        Label="Telefone" @bind-Value="cliente.Telefone" 
+        Required="true"
+        RequiredError="O campo 'Telefone' é obrigatório!"
+        T="string"
+        />
+
+    <MudTextField 
+        Label="Foto" @bind-Value="cliente.Foto" 
+        Required="true"
+        RequiredError="A foto é obrigatória!"
+        T="string"
+        />
+
+    <MudTextField 
+        Label="Sexo" @bind-Value="cliente.Sexo" 
+        Required="true"
+        RequiredError="O campo 'Sexo' é obrigatório!"
+        T="string"
+        />
+
+    <MudTextField 
+        Label="Cidade" @bind-Value="cliente.Cidade.Nome" 
+        Required="true"
+        RequiredError="O campo 'Cidade' é obrigatório!"
+        T="string"
+        />
+
+    <MudTextField 
+        Label="Estado" @bind-Value="cliente.Cidade.Estado" 
+        Required="true"
+        RequiredError="O campo 'Estado' é obrigatório!"
+        T="string"
+        />
+
     <MudButton OnClick="Salvar">Salvar</MudButton>
 </MudForm>
 
