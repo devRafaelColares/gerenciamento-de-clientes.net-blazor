@@ -1,0 +1,190 @@
+@page "/Clientes"
+
+<PageTitle>Clientes</PageTitle>
+
+<MudPaper Class="pa-4">
+<MudPaper Class="pa-4" Elevation="1">
+    <MudGrid>
+        <MudItem xs="12" sm="6" md="6">
+            <MudText Typo="Typo.h6">Consulta de Clientes</MudText>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="6">
+            <MudStack Direction="Row" Spacing="2" AlignItems="AlignItems.Center" JustifyContent="SpaceBetween">
+                <MudButton 
+                    Variant="Variant.Filled" 
+                    StartIcon="@Icons.Material.Filled.Save" 
+                    Color="Color.Info" 
+                    Size="Size.Small" 
+                    OnClick="ToggleForm">Cadastrar Cliente
+                </MudButton>
+
+                <MudButton 
+                    Variant="Variant.Filled" 
+                    StartIcon="@Icons.Material.Filled.Delete" 
+                    Color="Color.Error" 
+                    Size="Size.Small">Deletar Cliente
+                </MudButton>
+            </MudStack>
+        </MudItem>
+    </MudGrid>
+</MudPaper>
+
+
+    @if (showForm)
+    {
+        <MudForm @ref="form" @bind-IsValid="isValid" Validated="ValidateForm">
+            <MudTextField 
+                Label="Nome" @bind-Value="cliente.Nome" 
+                Required="true"
+                RequiredError="O campo 'Nome' é obrigatório!"
+                T="string"
+            />
+
+            <MudTextField 
+                Label="Telefone" @bind-Value="cliente.Telefone" 
+                Required="true"
+                RequiredError="O campo 'Telefone' é obrigatório!"
+                T="string"
+            />
+
+            <MudTextField 
+                Label="Foto" @bind-Value="cliente.Foto" 
+                Required="true"
+                RequiredError="A foto é obrigatória!"
+                T="string"
+            />
+
+            <MudSelect 
+                Label="Sexo" @bind-Value="cliente.Sexo" 
+                Required="true"
+                RequiredError="O campo 'Sexo' é obrigatório!"
+                T="string"
+            >
+                <MudSelectItem Value="@("Masculino")" />
+                <MudSelectItem Value="@("Feminino")" />
+            </MudSelect>
+
+            <MudTextField 
+                Label="Cidade" @bind-Value="cliente.Cidade.Nome" 
+                Required="true"
+                RequiredError="O campo 'Cidade' é obrigatório!"
+                T="string"
+            />
+
+            <MudTextField 
+                Label="Estado" @bind-Value="cliente.Cidade.Estado" 
+                Required="true"
+                RequiredError="O campo 'Estado' é obrigatório!"
+                T="string"
+            />
+
+            <MudButton OnClick="Salvar" Disabled="@(!isValid)">Salvar</MudButton>
+        </MudForm>
+    }
+
+    <MudTable Items="_clientes">
+        <HeaderContent>
+            <MudTh>Código</MudTh>
+            <MudTh>Nome</MudTh>
+            <MudTh>Telefone</MudTh>
+            <MudTh>Foto</MudTh>
+            <MudTh>Sexo</MudTh>
+            <MudTh>Cidade</MudTh>
+            <MudTh>Estado</MudTh>
+            <MudTh>Data de Criação</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Código">@context.Codigo</MudTd>
+            <MudTd DataLabel="Nome">@context.Nome</MudTd>
+            <MudTd DataLabel="Telefone">@context.Telefone</MudTd>
+            <MudTd DataLabel="Foto">
+                <MudAvatar Size="Size.Medium" ImgSrc="@context.Foto" />
+            </MudTd>
+            <MudTd DataLabel="Sexo">@context.Sexo</MudTd>
+            <MudTd DataLabel="Cidade">@context.Cidade.Nome</MudTd>
+            <MudTd DataLabel="Estado">@context.Cidade.Estado</MudTd>
+            <MudTd DataLabel="Data de Criação">@context.CreatedAt.ToString("dd/MM/yyyy HH:mm")</MudTd>
+        </RowTemplate>
+    </MudTable>
+
+    <MudText Typo="Typo.subtitle2" Class="mt-4" Color="Color.Error" Hidden="@string.IsNullOrEmpty(_errorMessage)">
+        @_errorMessage
+    </MudText>
+</MudPaper>
+
+@code {
+    private List<Cliente>? _clientes;
+    private Cliente cliente = new Cliente();
+    private MudForm form;
+    private bool isValid;
+    private bool showForm = false;
+    private string _errorMessage = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _clientes = await Http.GetFromJsonAsync<List<Cliente>>("http://localhost:5176/clientes");
+        }
+        catch (Exception ex)
+        {
+            _errorMessage = $"Erro: {ex.Message}";
+        }
+    }
+
+    private async Task Salvar()
+    {
+        if (isValid)
+        {
+            if (string.IsNullOrWhiteSpace(cliente.Nome) ||
+                string.IsNullOrWhiteSpace(cliente.Telefone) ||
+                string.IsNullOrWhiteSpace(cliente.Foto) ||
+                string.IsNullOrWhiteSpace(cliente.Sexo) ||
+                string.IsNullOrWhiteSpace(cliente.Cidade.Nome) ||
+                string.IsNullOrWhiteSpace(cliente.Cidade.Estado))
+            {
+                Console.WriteLine("Todos os campos obrigatórios devem ser preenchidos.");
+                return;
+            }
+
+            var response = await Http.PostAsJsonAsync("http://localhost:5176/clientes", cliente);
+
+            if (response.IsSuccessStatusCode)
+            {
+                _clientes = await Http.GetFromJsonAsync<List<Cliente>>("http://localhost:5176/clientes");
+                showForm = false;
+            }
+            else
+            {
+                Console.WriteLine("Erro ao salvar o cliente");
+            }
+        }
+    }
+
+    private void ToggleForm()
+    {
+        showForm = !showForm;
+    }
+
+    private void ValidateForm()
+    {
+        isValid = form.IsValid;
+    }
+
+    public class Cliente
+    {
+        public long Codigo { get; set; }
+        public string Nome { get; set; } = "";
+        public string Telefone { get; set; } = "";
+        public string Foto { get; set; } = "";
+        public string Sexo { get; set; } = "";
+        public Cidade Cidade { get; set; } = new Cidade();
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+    }
+
+    public class Cidade
+    {
+        public string Nome { get; set; } = "";
+        public string Estado { get; set; } = "";
+    }
+}
