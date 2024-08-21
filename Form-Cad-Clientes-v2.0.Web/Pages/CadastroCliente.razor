@@ -29,6 +29,13 @@
                     <MudText Typo="Typo.body2" Color="Color.Error">@_phoneError</MudText>
                 }
 
+                <MudTextField 
+                    Label="Foto" @bind-Value="cliente.Foto" 
+                    Required="true"
+                    RequiredError="A foto é obrigatória!"
+                    T="string"
+                />
+
                 <MudSelect 
                     Label="Sexo" @bind-Value="cliente.Sexo" 
                     Required="true"
