@@ -35,7 +35,7 @@
 
     <MudTable Items="_clientes">
         <HeaderContent>
-            <MudTh>Selecionado</MudTh>
+            <MudTh>Selecionar</MudTh>
             <MudTh>Código</MudTh>
             <MudTh>Nome</MudTh>
             <MudTh>Telefone</MudTh>
@@ -44,6 +44,7 @@
             <MudTh>Cidade</MudTh>
             <MudTh>Estado</MudTh>
             <MudTh>Data de Cadastro</MudTh>
+            <MudTh> </MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd>
@@ -59,6 +60,9 @@
             <MudTd DataLabel="Cidade">@context.Cidade.Nome</MudTd>
             <MudTd DataLabel="Estado">@context.Cidade.Estado</MudTd>
             <MudTd DataLabel="Data de Criação">@context.CreatedAt.ToString("dd/MM/yyyy HH:mm")</MudTd>
+            <MudTd>
+                <MudButton Variant="Variant.Filled" Color="Color.Default" Size="Size.Small" StartIcon="@Icons.Material.Filled.EditNote"></MudButton>
+            </MudTd>
         </RowTemplate>
     </MudTable>
 
