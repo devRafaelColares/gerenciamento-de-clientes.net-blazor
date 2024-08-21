@@ -23,7 +23,7 @@ namespace Formulario.Api.Services
             {
                 var cidade = new Cidades
                 {
-                    Nome = request.Nome,
+                    Nome = request.NomeCidade,
                     Estado = request.Estado
                 };
 

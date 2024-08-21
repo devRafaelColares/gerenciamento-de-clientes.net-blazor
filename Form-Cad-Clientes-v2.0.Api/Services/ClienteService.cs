@@ -123,35 +123,54 @@ namespace Formulario.Api.Services
             }
         }
 
-        public async Task<Response<ClienteDTO?>> UpdateAsync(long id, UpdateClienteRequest request)
+public async Task<Response<ClienteDTO?>> UpdateAsync(long id, UpdateClienteRequest request)
+{
+    try
+    {
+        var cliente = await _context.Clientes
+            .Include(c => c.Cidade)
+            .FirstOrDefaultAsync(c => c.Codigo == id);
+
+        if (cliente == null)
         {
-            try
-            {
-                var cliente = await _context.Clientes
-                    .FirstOrDefaultAsync(c => c.Codigo == id);
-
-                if (cliente == null)
-                {
-                    return new Response<ClienteDTO?>(false, null, "Cliente não encontrado", 404);
-                }
-
-                cliente.Nome = request.Nome;
-                cliente.Telefone = request.Telefone;
-                cliente.Foto = request.Foto;
-                cliente.Sexo = request.Sexo;
-
-                _context.Clientes.Update(cliente);
-                await _context.SaveChangesAsync();
-
-                var clienteDto = ConvertToDTO(cliente);
-
-                return new Response<ClienteDTO?>(true, clienteDto, "Cliente atualizado com sucesso");
-            }
-            catch (Exception ex)
-            {
-                return new Response<ClienteDTO?>(false, null, ex.Message, 500);
-            }
+            return new Response<ClienteDTO?>(false, null, "Cliente não encontrado", 404);
         }
+
+        cliente.Nome = request.Nome;
+        cliente.Telefone = request.Telefone;
+        cliente.Foto = request.Foto;
+        cliente.Sexo = request.Sexo;
+
+        // Verificar se a cidade existe ou criar uma nova
+        var cidade = await _context.Cidades
+            .FirstOrDefaultAsync(c => c.Nome == request.Cidade.NomeCidade && c.Estado == request.Cidade.Estado);
+
+        if (cidade == null)
+        {
+            cidade = new Cidades
+            {
+                Nome = request.Cidade.NomeCidade,
+                Estado = request.Cidade.Estado
+            };
+            _context.Cidades.Add(cidade);
+            await _context.SaveChangesAsync();
+        }
+
+        cliente.Cidade = cidade;
+
+        _context.Clientes.Update(cliente);
+        await _context.SaveChangesAsync();
+
+        var clienteDto = ConvertToDTO(cliente);
+
+        return new Response<ClienteDTO?>(true, clienteDto, "Cliente atualizado com sucesso");
+    }
+    catch (Exception ex)
+    {
+        return new Response<ClienteDTO?>(false, null, ex.Message, 500);
+    }
+}
+
 
         public async Task<Response<bool>> DeleteAsync(long id)
         {

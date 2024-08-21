@@ -6,8 +6,6 @@ namespace Formulario.Core.Requests
         public string Telefone { get; set; } = string.Empty;
         public string Foto { get; set; } = string.Empty;
         public string Sexo { get; set; } = string.Empty;
-        public string Cidade { get; set; } = string.Empty;
-        public string Estado { get; set; } = string.Empty;
-
+        public CreateCidadeRequest Cidade { get; set; } = new CreateCidadeRequest();
     }
 }
