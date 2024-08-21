@@ -5,36 +5,34 @@
 
 <MudPaper Class="pa-4">
     <MudPaper Class="mud-width-full pa-6 mb-8" Elevation="2">
-    <MudGrid>
-        <MudItem xs="12" sm="12" md="12">
-            <MudStack Row="true" Spacing="3">
-                <div>
-                    <MudText Typo="Typo.h6">Consulta de Clientes</MudText>
-                </div>
-                <MudSpacer />
-                <div>
-                    <MudButton 
-                        Variant="Variant.Filled" 
-                        StartIcon="@Icons.Material.Filled.Save" 
-                        Color="Color.Info" 
-                        Size="Size.Small" 
-                        OnClick="ToggleForm">Cadastrar Cliente
-                    </MudButton>
+        <MudGrid>
+            <MudItem xs="12" sm="12" md="12">
+                <MudStack Row="true" Spacing="3">
+                    <div>
+                        <MudText Typo="Typo.h6">Consulta de Clientes</MudText>
+                    </div>
+                    <MudSpacer />
+                    <div>
+                        <MudButton 
+                            Variant="Variant.Filled" 
+                            StartIcon="@Icons.Material.Filled.Save" 
+                            Color="Color.Info" 
+                            Size="Size.Small" 
+                            OnClick="ToggleForm">Cadastrar Cliente
+                        </MudButton>
 
-                    <MudButton 
-                        Variant="Variant.Filled" 
-                        StartIcon="@Icons.Material.Filled.Delete" 
-                        Color="Color.Error" 
-                        Size="Size.Small"
-                        OnClick="DeletarClientesSelecionados">Deletar Cliente
-                    </MudButton>
-                </div>
-            </MudStack>
-        </MudItem>
-    </MudGrid>
-
+                        <MudButton 
+                            Variant="Variant.Filled" 
+                            StartIcon="@Icons.Material.Filled.Delete" 
+                            Color="Color.Error" 
+                            Size="Size.Small"
+                            OnClick="DeletarClientesSelecionados">Deletar Cliente
+                        </MudButton>
+                    </div>
+                </MudStack>
+            </MudItem>
+        </MudGrid>
     </MudPaper>
-
 
     @if (showForm)
     {
@@ -76,45 +74,43 @@
                 RequiredError="O campo 'Estado' é obrigatório!"
                 T="string"
             >
-        <MudSelectItem Value="@("AC")">AC</MudSelectItem>
-        <MudSelectItem Value="@("AL")">AL</MudSelectItem>
-        <MudSelectItem Value="@("AP")">AP</MudSelectItem>
-        <MudSelectItem Value="@("AM")">AM</MudSelectItem>
-        <MudSelectItem Value="@("BA")">BA</MudSelectItem>
-        <MudSelectItem Value="@("CE")">CE</MudSelectItem>
-        <MudSelectItem Value="@("DF")">DF</MudSelectItem>
-        <MudSelectItem Value="@("ES")">ES</MudSelectItem>
-        <MudSelectItem Value="@("GO")">GO</MudSelectItem>
-        <MudSelectItem Value="@("MA")">MA</MudSelectItem>
-        <MudSelectItem Value="@("MT")">MT</MudSelectItem>
-        <MudSelectItem Value="@("MS")">MS</MudSelectItem>
-        <MudSelectItem Value="@("MG")">MG</MudSelectItem>
-        <MudSelectItem Value="@("PA")">PA</MudSelectItem>
-        <MudSelectItem Value="@("PB")">PB</MudSelectItem>
-        <MudSelectItem Value="@("PR")">PR</MudSelectItem>
-        <MudSelectItem Value="@("PE")">PE</MudSelectItem>
-        <MudSelectItem Value="@("PI")">PI</MudSelectItem>
-        <MudSelectItem Value="@("RJ")">RJ</MudSelectItem>
-        <MudSelectItem Value="@("RN")">RN</MudSelectItem>
-        <MudSelectItem Value="@("RS")">RS</MudSelectItem>
-        <MudSelectItem Value="@("RO")">RO</MudSelectItem>
-        <MudSelectItem Value="@("RR")">RR</MudSelectItem>
-        <MudSelectItem Value="@("SC")">SC</MudSelectItem>
-        <MudSelectItem Value="@("SP")">SP</MudSelectItem>
-        <MudSelectItem Value="@("SE")">SE</MudSelectItem>
-        <MudSelectItem Value="@("TO")">TO</MudSelectItem>
-
+                <MudSelectItem Value="@("AC")">AC</MudSelectItem>
+                <MudSelectItem Value="@("AL")">AL</MudSelectItem>
+                <MudSelectItem Value="@("AP")">AP</MudSelectItem>
+                <MudSelectItem Value="@("AM")">AM</MudSelectItem>
+                <MudSelectItem Value="@("BA")">BA</MudSelectItem>
+                <MudSelectItem Value="@("CE")">CE</MudSelectItem>
+                <MudSelectItem Value="@("DF")">DF</MudSelectItem>
+                <MudSelectItem Value="@("ES")">ES</MudSelectItem>
+                <MudSelectItem Value="@("GO")">GO</MudSelectItem>
+                <MudSelectItem Value="@("MA")">MA</MudSelectItem>
+                <MudSelectItem Value="@("MT")">MT</MudSelectItem>
+                <MudSelectItem Value="@("MS")">MS</MudSelectItem>
+                <MudSelectItem Value="@("MG")">MG</MudSelectItem>
+                <MudSelectItem Value="@("PA")">PA</MudSelectItem>
+                <MudSelectItem Value="@("PB")">PB</MudSelectItem>
+                <MudSelectItem Value="@("PR")">PR</MudSelectItem>
+                <MudSelectItem Value="@("PE")">PE</MudSelectItem>
+                <MudSelectItem Value="@("PI")">PI</MudSelectItem>
+                <MudSelectItem Value="@("RJ")">RJ</MudSelectItem>
+                <MudSelectItem Value="@("RN")">RN</MudSelectItem>
+                <MudSelectItem Value="@("RS")">RS</MudSelectItem>
+                <MudSelectItem Value="@("RO")">RO</MudSelectItem>
+                <MudSelectItem Value="@("RR")">RR</MudSelectItem>
+                <MudSelectItem Value="@("SC")">SC</MudSelectItem>
+                <MudSelectItem Value="@("SP")">SP</MudSelectItem>
+                <MudSelectItem Value="@("SE")">SE</MudSelectItem>
+                <MudSelectItem Value="@("TO")">TO</MudSelectItem>
             </MudSelect>
 
-<MudAutocomplete T="string" Label="Cidade" @bind-Value="cliente.Cidade.Nome"
-                 SearchFunc="@SearchCidades"
-                 Required="true" RequiredError="O campo 'Cidade' é obrigatório!"
-                 ResetValueOnEmptyText="true"
-                 CoerceText="true" CoerceValue="true" />
-
+            <MudAutocomplete T="string" Label="Cidade" @bind-Value="cliente.Cidade.Nome"
+                SearchFunc="@SearchCidades"
+                MaxItems="10"
+                Required="true" RequiredError="O campo 'Cidade' é obrigatório!"
+                ResetValueOnEmptyText="true"
+                CoerceText="true" CoerceValue="true" />
 
             <MudSpacer />
-
         </MudForm>
         <MudButton 
             OnClick="Salvar" 
@@ -140,7 +136,7 @@
         </HeaderContent>
         <RowTemplate>
             <MudTd>
-            <MudCheckBox @bind-Value="@context.IsSelected" Color="Color.Error" UnCheckedColor="Color.Default"></MudCheckBox>
+                <MudCheckBox @bind-Value="@context.IsSelected" Color="Color.Error" UnCheckedColor="Color.Default"></MudCheckBox>
             </MudTd>
             <MudTd DataLabel="Código">@context.Codigo</MudTd>
             <MudTd DataLabel="Nome">@context.Nome</MudTd>
@@ -161,8 +157,6 @@
 </MudPaper>
 
 @code {
-    private List<Cidade>? _cidades;
-
     private List<Cliente>? _clientes;
     private Cliente cliente = new Cliente();
     private MudForm form;
@@ -170,10 +164,12 @@
     private bool showForm = false;
     private string _errorMessage = string.Empty;
 
+    private List<string> cidades = CidadesBrasil.Cidades;
+
     protected override async Task OnInitializedAsync()
     {
         await CarregarClientes();
-        await CarregarCidades();
+        // CarregarCidades não é mais necessário, pois usamos o array local
     }
 
     private async Task CarregarClientes()
@@ -187,29 +183,14 @@
             _errorMessage = $"Erro: {ex.Message}";
         }
     }
-    private async Task CarregarCidades()
-    {
-        try
-        {
-            _cidades = await ClientesService.GetCidades();
-        }
-        catch (Exception ex)
-        {
-            _errorMessage = $"Erro: {ex.Message}";
-        }
-    }
 
     private async Task<IEnumerable<string>> SearchCidades(string value)
     {
-        if (_cidades == null)
-            return new List<string>();
-
         if (string.IsNullOrEmpty(value))
-            return _cidades.Select(c => c.Nome);
+            return cidades;
 
-        return _cidades
-            .Where(c => c.Nome.Contains(value, StringComparison.InvariantCultureIgnoreCase))
-            .Select(c => c.Nome);
+        return cidades
+            .Where(c => c.Contains(value, StringComparison.InvariantCultureIgnoreCase));
     }
 
     private async Task Salvar()
@@ -245,10 +226,6 @@
 
     private void ToggleForm()
     {
-        if (showForm)
-        {
-            cliente = new Cliente();
-        }
         showForm = !showForm;
     }
 
