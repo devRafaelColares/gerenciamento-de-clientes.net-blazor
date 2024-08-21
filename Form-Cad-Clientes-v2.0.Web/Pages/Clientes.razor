@@ -71,38 +71,41 @@
             </MudSelect>
 
             <MudSelect 
-                Label="Estado" @bind-Value="cliente.Cidade.Estado" 
+                Label="Estado" 
+                @bind-Value="selectedEstado" 
+                OnValueChanged="OnEstadoChanged"
                 Required="true"
                 RequiredError="O campo 'Estado' é obrigatório!"
                 T="string"
             >
-                <MudSelectItem Value="@("AC")">Acre</MudSelectItem>
-                <MudSelectItem Value="@("AL")">Alagoas</MudSelectItem>
-                <MudSelectItem Value="@("AP")">Amapá</MudSelectItem>
-                <MudSelectItem Value="@("AM")">Amazonas</MudSelectItem>
-                <MudSelectItem Value="@("BA")">Bahia</MudSelectItem>
-                <MudSelectItem Value="@("CE")">Ceará</MudSelectItem>
-                <MudSelectItem Value="@("DF")">Distrito Federal</MudSelectItem>
-                <MudSelectItem Value="@("ES")">Espírito Santo</MudSelectItem>
-                <MudSelectItem Value="@("GO")">Goiás</MudSelectItem>
-                <MudSelectItem Value="@("MA")">Maranhão</MudSelectItem>
-                <MudSelectItem Value="@("MT")">Mato Grosso</MudSelectItem>
-                <MudSelectItem Value="@("MS")">Mato Grosso do Sul</MudSelectItem>
-                <MudSelectItem Value="@("MG")">Minas Gerais</MudSelectItem>
-                <MudSelectItem Value="@("PA")">Pará</MudSelectItem>
-                <MudSelectItem Value="@("PB")">Paraíba</MudSelectItem>
-                <MudSelectItem Value="@("PR")">Paraná</MudSelectItem>
-                <MudSelectItem Value="@("PE")">Pernambuco</MudSelectItem>
-                <MudSelectItem Value="@("PI")">Piauí</MudSelectItem>
-                <MudSelectItem Value="@("RJ")">Rio de Janeiro</MudSelectItem>
-                <MudSelectItem Value="@("RN")">Rio Grande do Norte</MudSelectItem>
-                <MudSelectItem Value="@("RS")">Rio Grande do Sul</MudSelectItem>
-                <MudSelectItem Value="@("RO")">Rondônia</MudSelectItem>
-                <MudSelectItem Value="@("RR")">Roraima</MudSelectItem>
-                <MudSelectItem Value="@("SC")">Santa Catarina</MudSelectItem>
-                <MudSelectItem Value="@("SP")">São Paulo</MudSelectItem>
-                <MudSelectItem Value="@("SE")">Sergipe</MudSelectItem>
-                <MudSelectItem Value="@("TO")">Tocantins</MudSelectItem>
+        <MudSelectItem Value="@("AC")">AC</MudSelectItem>
+        <MudSelectItem Value="@("AL")">AL</MudSelectItem>
+        <MudSelectItem Value="@("AP")">AP</MudSelectItem>
+        <MudSelectItem Value="@("AM")">AM</MudSelectItem>
+        <MudSelectItem Value="@("BA")">BA</MudSelectItem>
+        <MudSelectItem Value="@("CE")">CE</MudSelectItem>
+        <MudSelectItem Value="@("DF")">DF</MudSelectItem>
+        <MudSelectItem Value="@("ES")">ES</MudSelectItem>
+        <MudSelectItem Value="@("GO")">GO</MudSelectItem>
+        <MudSelectItem Value="@("MA")">MA</MudSelectItem>
+        <MudSelectItem Value="@("MT")">MT</MudSelectItem>
+        <MudSelectItem Value="@("MS")">MS</MudSelectItem>
+        <MudSelectItem Value="@("MG")">MG</MudSelectItem>
+        <MudSelectItem Value="@("PA")">PA</MudSelectItem>
+        <MudSelectItem Value="@("PB")">PB</MudSelectItem>
+        <MudSelectItem Value="@("PR")">PR</MudSelectItem>
+        <MudSelectItem Value="@("PE")">PE</MudSelectItem>
+        <MudSelectItem Value="@("PI")">PI</MudSelectItem>
+        <MudSelectItem Value="@("RJ")">RJ</MudSelectItem>
+        <MudSelectItem Value="@("RN")">RN</MudSelectItem>
+        <MudSelectItem Value="@("RS")">RS</MudSelectItem>
+        <MudSelectItem Value="@("RO")">RO</MudSelectItem>
+        <MudSelectItem Value="@("RR")">RR</MudSelectItem>
+        <MudSelectItem Value="@("SC")">SC</MudSelectItem>
+        <MudSelectItem Value="@("SP")">SP</MudSelectItem>
+        <MudSelectItem Value="@("SE")">SE</MudSelectItem>
+        <MudSelectItem Value="@("TO")">TO</MudSelectItem>
+
             </MudSelect>
 
             <MudTextField 
@@ -161,6 +164,8 @@
 </MudPaper>
 
 @code {
+    private string selectedEstado;
+
     private List<Cliente>? _clientes;
     private Cliente cliente = new Cliente();
     private MudForm form;
@@ -171,6 +176,15 @@
     protected override async Task OnInitializedAsync()
     {
         await CarregarClientes();
+    }
+
+        private void OnEstadoChanged(string estado)
+    {
+        selectedEstado = estado;
+        Console.WriteLine($"Estado selecionado: {estado}");
+
+        // Aqui você pode adicionar lógica adicional se necessário
+        // Por exemplo, você pode atualizar o cliente.Cidade.Estado ou executar outra ação
     }
 
     private async Task CarregarClientes()
