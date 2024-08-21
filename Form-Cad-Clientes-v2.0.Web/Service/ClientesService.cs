@@ -54,27 +54,30 @@ namespace Form_Cad_Clientes_v2._0.Web.Service
             }
         }
 
-        public async Task<List<string>> GetCidadesByEstado(string UF)
+        public async Task<List<Cidade>> GetCidades()
         {
             try
             {
-                // Substitua com a URL correta para a API de cidades
-                var response = await _httpClient.GetFromJsonAsync<List<Distrito>>($"https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/distritos");
+                var response = await _httpClient.GetFromJsonAsync<List<Distrito>>("https://servicodados.ibge.gov.br/api/v1/localidades/distritos");
 
-                // Verifica se a resposta é nula e cria uma lista vazia se necessário
                 if (response == null)
                 {
-                    return new List<string>();
+                    return new List<Cidade>();
                 }
 
-                // Extrai os nomes dos distritos da resposta
-                return response.Select(d => d.Nome).ToList();
+                return response.Select(d => new Cidade
+                {
+                    Id = d.Municipio.Id,
+                    Nome = d.Nome,
+                    Estado = d.Municipio.Microrregiao.Mesorregiao.UF.Sigla
+                }).ToList();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Erro ao obter cidades: {ex.Message}");
-                return new List<string>();
+                return new List<Cidade>();
             }
         }
+
     }
 }

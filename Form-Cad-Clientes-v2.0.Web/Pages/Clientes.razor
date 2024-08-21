@@ -71,9 +71,7 @@
             </MudSelect>
 
             <MudSelect 
-                Label="Estado" 
-                @bind-Value="selectedEstado" 
-                OnValueChanged="OnEstadoChanged"
+                Label="Estado" @bind-Value="cliente.Cidade.Estado" 
                 Required="true"
                 RequiredError="O campo 'Estado' é obrigatório!"
                 T="string"
@@ -108,12 +106,11 @@
 
             </MudSelect>
 
-            <MudTextField 
-                Label="Cidade" @bind-Value="cliente.Cidade.Nome" 
-                Required="true"
-                RequiredError="O campo 'Cidade' é obrigatório!"
-                T="string"
-            />
+<MudAutocomplete T="string" Label="Cidade" @bind-Value="cliente.Cidade.Nome"
+                 SearchFunc="@SearchCidades"
+                 Required="true" RequiredError="O campo 'Cidade' é obrigatório!"
+                 ResetValueOnEmptyText="true"
+                 CoerceText="true" CoerceValue="true" />
 
 
             <MudSpacer />
@@ -164,7 +161,7 @@
 </MudPaper>
 
 @code {
-    private string selectedEstado;
+    private List<Cidade>? _cidades;
 
     private List<Cliente>? _clientes;
     private Cliente cliente = new Cliente();
@@ -176,15 +173,7 @@
     protected override async Task OnInitializedAsync()
     {
         await CarregarClientes();
-    }
-
-        private void OnEstadoChanged(string estado)
-    {
-        selectedEstado = estado;
-        Console.WriteLine($"Estado selecionado: {estado}");
-
-        // Aqui você pode adicionar lógica adicional se necessário
-        // Por exemplo, você pode atualizar o cliente.Cidade.Estado ou executar outra ação
+        await CarregarCidades();
     }
 
     private async Task CarregarClientes()
@@ -197,6 +186,30 @@
         {
             _errorMessage = $"Erro: {ex.Message}";
         }
+    }
+    private async Task CarregarCidades()
+    {
+        try
+        {
+            _cidades = await ClientesService.GetCidades();
+        }
+        catch (Exception ex)
+        {
+            _errorMessage = $"Erro: {ex.Message}";
+        }
+    }
+
+    private async Task<IEnumerable<string>> SearchCidades(string value)
+    {
+        if (_cidades == null)
+            return new List<string>();
+
+        if (string.IsNullOrEmpty(value))
+            return _cidades.Select(c => c.Nome);
+
+        return _cidades
+            .Where(c => c.Nome.Contains(value, StringComparison.InvariantCultureIgnoreCase))
+            .Select(c => c.Nome);
     }
 
     private async Task Salvar()

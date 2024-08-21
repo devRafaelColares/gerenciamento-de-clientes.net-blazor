@@ -20,16 +20,6 @@ namespace Form_Cad_Clientes_v2._0.Web.Models
         public string Estado { get; set; } = ""; // Estado da cidade
     }
 
-    public class Distrito
-    {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public Municipio Municipio { get; set; }
-    }
 
-    public class Municipio
-    {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-    }
+
 }
