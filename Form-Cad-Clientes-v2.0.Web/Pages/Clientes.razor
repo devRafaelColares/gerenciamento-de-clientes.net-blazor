@@ -3,37 +3,60 @@
 <PageTitle>Clientes</PageTitle>
 
 <MudPaper Class="pa-4">
-    <MudPaper Class="mud-width-full pa-6 mb-8" Elevation="2">
-        <MudGrid>
-            <MudItem xs="12" sm="12" md="12">
-                <MudStack Row="true" Spacing="3">
-                    <div>
-                        <MudText Typo="Typo.h6">Consulta de Clientes</MudText>
-                    </div>
-                    <MudSpacer />
-                    <div>
-                        <MudButton 
-                            Variant="Variant.Filled" 
-                            StartIcon="@Icons.Material.Filled.Add" 
-                            Color="Color.Info" 
-                            Size="Size.Small" 
-                            OnClick="NavigateToCadastroCliente">Cadastrar Cliente
-                        </MudButton>
+<MudPaper Class="mud-width-full pa-6 mb-8" Elevation="2">
+    <MudGrid>
+        <MudItem xs="12" sm="12" md="12">
+            <MudStack 
+            Row="true"
+                Spacing="3" 
+                JustifyContent="JustifyContent.SpaceBetween" 
+                AlignItems="AlignItems.Center">
+                
+                <div class="pt-04">
+                    <MudText Typo="Typo.h6">Consulta de Clientes</MudText>
+                </div>
+                
+                @* <MudButton 
+                    Variant="Variant.Filled" 
+                    StartIcon="@Icons.Material.Filled.FilterAlt" 
+                    Color="Color.Default" 
+                    Size="Size.Small" 
+                 OnClick="OpenFilterDialog" /> *@
 
-                        <MudButton 
-                            Variant="Variant.Filled" 
-                            StartIcon="@Icons.Material.Filled.Delete" 
-                            Color="Color.Error" 
-                            Size="Size.Small"
-                            OnClick="DeletarClientesSelecionados">Deletar Cliente
-                        </MudButton>
-                    </div>
-                </MudStack>
-            </MudItem>
-        </MudGrid>
-    </MudPaper>
+                <MudTextField 
+                    Placeholder="Filtrar" 
+                    @bind-Value="termoDeBusca" 
+                    T="string" 
+                    Adornment="Adornment.Start"
+                    AdornmentIcon="@Icons.Material.Filled.Search"
+                    Immediate="true"
+                    OnValueChanged="OnFiltroChanged" 
+                    />
+                
+                <div>
+                    <MudButton 
+                        Variant="Variant.Filled" 
+                        StartIcon="@Icons.Material.Filled.Add" 
+                        Color="Color.Info" 
+                        Size="Size.Small" 
+                        OnClick="NavigateToCadastroCliente">Cadastrar Cliente
+                    </MudButton>
 
-    <MudTable Items="_clientes">
+                    <MudButton 
+                        Variant="Variant.Filled" 
+                        StartIcon="@Icons.Material.Filled.Delete" 
+                        Color="Color.Error" 
+                        Size="Size.Small"
+                        OnClick="DeletarClientesSelecionados">Deletar Cliente
+                    </MudButton>
+                </div>
+            </MudStack>
+        </MudItem>
+    </MudGrid>
+</MudPaper>
+
+
+<MudTable Items="_clientes?.Where(Filter) ?? Enumerable.Empty<Cliente>()" Filterable="true" QuickFilter="Filter">
         <HeaderContent>
             <MudTh>Selecionar</MudTh>
             <MudTh>Código</MudTh>
@@ -59,9 +82,9 @@
             <MudTd DataLabel="Sexo">@context.Sexo</MudTd>
             <MudTd DataLabel="Cidade">@context.Cidade.Nome</MudTd>
             <MudTd DataLabel="Estado">@context.Cidade.Estado</MudTd>
-            <MudTd DataLabel="Data de Criação">@context.CreatedAt.ToString("dd/MM/yyyy HH:mm")</MudTd>
+            <MudTd DataLabel="Data de Cadastro">@context.CreatedAt.ToString("dd/MM/yyyy HH:mm")</MudTd>
             <MudTd>
-                <MudButton Variant="Variant.Filled" Color="Color.Default" Size="Size.Small" StartIcon="@Icons.Material.Filled.EditNote"></MudButton>
+                <MudButton Variant="Variant.Filled" Color="Color.Default" Size="Size.Small" StartIcon="@Icons.Material.Filled.Edit"></MudButton>
             </MudTd>
         </RowTemplate>
     </MudTable>
@@ -74,6 +97,7 @@
 @code {
     private List<Cliente>? _clientes;
     private string _errorMessage = string.Empty;
+    private string termoDeBusca { get; set; } = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
@@ -85,12 +109,18 @@
         try
         {
             _clientes = await ClientesService.GetClientes();
+            if (_clientes == null)
+            {
+                _clientes = new List<Cliente>();
+            }
         }
         catch (Exception ex)
         {
             _errorMessage = $"Erro: {ex.Message}";
+            _clientes = new List<Cliente>();
         }
     }
+
 
     private async Task DeletarClientesSelecionados()
     {
@@ -108,4 +138,29 @@
     {
         NavigationManager.NavigateTo("/cadastro");
     }
+
+    private void OnFiltroChanged(string novoValor)
+    {
+        termoDeBusca = novoValor;
+        StateHasChanged(); // Atualiza a UI para refletir o novo filtro
+    }
+
+    public Func<Cliente, bool> Filter => cliente =>
+    {
+        if (_clientes == null || string.IsNullOrWhiteSpace(termoDeBusca))
+            return true;
+
+        var keywords = termoDeBusca.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        return keywords.All(keyword =>
+            (cliente.Codigo.ToString().Contains(keyword, StringComparison.OrdinalIgnoreCase)) ||
+            (cliente.Nome?.Contains(keyword, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (cliente.Telefone?.Contains(keyword, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (cliente.Sexo?.Contains(keyword, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (cliente.Cidade.Nome?.Contains(keyword, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (cliente.Cidade.Estado?.Contains(keyword, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (cliente.CreatedAt.ToString("dd/MM/yyyy").Contains(keyword, StringComparison.OrdinalIgnoreCase))
+        );
+    };
+
 }
