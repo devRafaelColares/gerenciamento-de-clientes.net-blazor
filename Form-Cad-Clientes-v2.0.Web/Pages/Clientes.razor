@@ -16,28 +16,30 @@
                     <MudText Typo="Typo.h4">Consulta de Clientes</MudText>
                 </div>
             </MudStack>
-                @* <MudButton 
-                    Variant="Variant.Filled" 
-                    StartIcon="@Icons.Material.Filled.FilterAlt" 
-                    Color="Color.Default" 
-                    Size="Size.Small" 
-                 OnClick="OpenFilterDialog" /> *@
+
             <MudStack
             Class="mt-2"
                 Row="true"
                 JustifyContent="JustifyContent.SpaceBetween">
-                <MudTextField
-                Style="width: 400px;"
-                    Margin="Margin.Dense"
-                    Placeholder="Filtrar" 
-                    @bind-Value="termoDeBusca" 
-                    T="string" 
-                    Adornment="Adornment.Start"
-                    AdornmentIcon="@Icons.Material.Filled.Search"
-                    Immediate="true"
-                    OnValueChanged="OnFiltroChanged" 
-                    />
-                
+                <MudStack Row="true">
+                    <MudTextField
+                    Style="width: 330px;"
+                        Margin="Margin.Dense"
+                        Placeholder="Buscar" 
+                        @bind-Value="termoDeBusca" 
+                        T="string" 
+                        Adornment="Adornment.Start"
+                        AdornmentIcon="@Icons.Material.Filled.Search"
+                        Immediate="true"
+                        OnValueChanged="OnFiltroChanged" 
+                        />
+
+                    <MudButton
+                        EndIcon="@Icons.Material.Filled.FilterAlt"
+                        Color="Color.Default">
+                    </MudButton>
+                </MudStack>
+                <MudSpacer />
                 <div>
                     <MudButton 
                         Variant="Variant.Filled" 
