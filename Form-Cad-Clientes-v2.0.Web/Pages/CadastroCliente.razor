@@ -81,12 +81,17 @@
                     <MudSelectItem Value="@("TO")">TO</MudSelectItem>
                 </MudSelect>
 
-                <MudAutocomplete T="string" Label="Cidade" @bind-Value="cliente.Cidade.Nome"
+                <MudAutocomplete 
+                    T="string" 
+                    Label="Cidade" 
+                    @bind-Value="cliente.Cidade.Nome"
                     SearchFunc="@SearchCidades"
-                    MaxItems="10"
-                    Required="true" RequiredError="O campo 'Cidade' é obrigatório!"
+                    MaxItems="20"
+                    Required="true" 
+                    RequiredError="O campo 'Cidade' é obrigatório!"
                     ResetValueOnEmptyText="true"
-                    CoerceText="true" CoerceValue="true" />
+                    CoerceText="true" 
+                    CoerceValue="true" />
 
                 <MudSpacer />
             </MudForm>

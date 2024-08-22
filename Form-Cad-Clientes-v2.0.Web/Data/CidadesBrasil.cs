@@ -38,7 +38,7 @@ public static class CidadesBrasil
         "Santa Teresa", "São Roque do Canaã", "São Domingos do Norte", "São José do Calçado",
         "Vargem Alta", "Viana", "Marataízes", "Castelo", "Domingos Martins",
         "Fundão", "Pedro Canário", "Serra Dourada", "Santa Leopoldina", "Ibatiba",
-        "Água Doce do Norte", "Baixo Guandu", "Boa Esperança", "Carmo da Cachoeira",
+        "Água Doce do Norte", "Baixo Guandu", "Boa Esperança",
         "Dores do Rio Preto", "Ponto Belo", "Santa Maria de Jetibá", "São Pedro", "Santo Antônio",
 
         // Minas Gerais
@@ -49,7 +49,7 @@ public static class CidadesBrasil
         "Pouso Alegre", "Manhuaçu", "Conselheiro Lafaiete", "Araxá",
         "Itabira", "Boa Esperança", "Formiga", "Janaúba", "Lavras",
         "Nova Serrana", "São Sebastião do Paraíso", "Valadares", "Araguari",
-        "Cambuí", "Campo Belo", "Campos Gerais", "Carmo do Rio Claro", "Divinópolis",
+        "Cambuí", "Campo Belo", "Campos Gerais", "Carmo do Rio Claro",
         "Eldorado", "Felício dos Santos", "Ituiutaba", "João Monlevade", "Lagoa da Prata",
         "Nova Ponte", "Paraguaçu", "Pirapora", "Piumhi", "São João Nepomuceno",
         "Vespasiano", "Caldas", "Carmo da Cachoeira", "Santo Antônio do Monte",
@@ -87,8 +87,8 @@ public static class CidadesBrasil
         
         // Santa Catarina
         "Florianópolis", "Joinville", "Blumenau", "Chapecó", "Itajaí",
-        "Criciúma", "São José", "Balneário Camboriú", "Lages", "Jaraguá do Sul",
-        "Camboriú", "Herval d'Oeste", "Concórdia", "Caçador", "Rio do Sul",
+        "Criciúma", "São José", "Balneário Camboriú", "Jaraguá do Sul",
+        "Camboriú", "Herval d'Oeste", "Caçador", "Rio do Sul",
         "São Bento do Sul", "Palhoça", "Araranguá", "Xanxerê", "São Miguel do Oeste",
         "Brusque", "Tubarão", "Joaçaba", "Seara", "Tangará",
         "Concórdia", "Lages", "Videira", "Capinzal", "Santa Cecília",

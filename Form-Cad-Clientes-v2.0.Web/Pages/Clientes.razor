@@ -95,7 +95,8 @@
             <MudTd DataLabel="Data de Cadastro">@context.CreatedAt.ToString("dd/MM/yyyy HH:mm")</MudTd>
             <MudIconButton 
                 Icon="@Icons.Material.Filled.Edit"
-                Color="Color.Default">
+                Color="Color.Default"
+                OnClick="() => OpenEditDialogAsync(context)">
             </MudIconButton>
         </RowTemplate>
     </MudTable>
@@ -193,4 +194,32 @@
             _errorMessage = string.Empty;
         }
     }
+
+private async Task OpenEditDialogAsync(Cliente cliente)
+{
+    if (cliente == null)
+    {
+        Console.WriteLine("Cliente fornecido é nulo.");
+        return;
+    }
+
+    // Verifique o estado do cliente e sua cidade
+    Console.WriteLine($"Abrindo diálogo para o cliente: {cliente.Nome}, Cidade: {cliente.Cidade?.Nome}");
+
+    var parameters = new DialogParameters { ["Cliente"] = cliente };
+    var options = new DialogOptions { CloseOnEscapeKey = true };
+
+    var dialog = DialogService.Show<EditClienteDialog>("Editar Cliente", parameters, options);
+    var result = await dialog.Result;
+
+    if (!result.Canceled)
+    {
+        Console.WriteLine($"Cliente após diálogo: {cliente.Nome}, Cidade: {cliente.Cidade?.Nome}");
+
+        await CarregarClientes();
+    }
+}
+
+
+
 }

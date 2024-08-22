@@ -79,5 +79,26 @@ namespace Form_Cad_Clientes_v2._0.Web.Service
             }
         }
 
+        public async Task UpdateCliente(Cliente cliente)
+        {
+            try
+            {
+                var response = await _httpClient.PutAsJsonAsync($"http://localhost:5176/clientes/{cliente.Codigo}", cliente);
+                
+                response.EnsureSuccessStatusCode();
+                
+                Console.WriteLine("Cliente atualizado com sucesso!");
+            }
+            catch (HttpRequestException httpEx)
+            {
+                Console.WriteLine($"Erro na requisição HTTP: {httpEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao atualizar cliente: {ex.Message}");
+            }
+        }
+
+
     }
 }

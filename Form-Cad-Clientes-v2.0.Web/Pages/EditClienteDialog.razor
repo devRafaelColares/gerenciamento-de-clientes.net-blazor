@@ -1,0 +1,175 @@
+<MudDialog>
+    <DialogContent>
+        <MudForm @ref="form" @bind-IsValid="isValid" Validated="ValidateForm">
+            <MudTextField 
+                Label="Nome" 
+                @bind-Value="Cliente.Nome" 
+                Required="true" 
+                RequiredError="O campo 'Nome' é obrigatório!" 
+                T="string" 
+            />
+            
+            <MudTextField 
+                Label="Telefone" 
+                @bind-Value="Cliente.Telefone" 
+                Required="true" 
+                RequiredError="O campo 'Telefone' é obrigatório!" 
+                T="string" 
+                MaxLength="14" 
+                Placeholder="(99) 99999-9999" 
+                ValueChanged="OnTelefoneChanged"
+                @bind-Value:event="oninput"
+            />
+            @if (!string.IsNullOrEmpty(_phoneError))
+            {
+                <MudText Typo="Typo.body2" Color="Color.Error">@_phoneError</MudText>
+            }
+
+            <MudTextField 
+                Label="Foto" 
+                @bind-Value="Cliente.Foto" 
+                Required="true" 
+                RequiredError="A foto é obrigatória!" 
+                T="string" 
+            />
+
+            <MudSelect 
+                Label="Sexo" 
+                @bind-Value="Cliente.Sexo" 
+                Required="true" 
+                RequiredError="O campo 'Sexo' é obrigatório!" 
+                T="string"
+            >
+                <MudSelectItem Value="@("Masculino")">Masculino</MudSelectItem>
+                <MudSelectItem Value="@("Feminino")">Feminino</MudSelectItem>
+            </MudSelect>
+
+            <MudSelect 
+                Label="Estado" 
+                @bind-Value="Cliente.Cidade.Estado" 
+                Required="true" 
+                RequiredError="O campo 'Estado' é obrigatório!" 
+                T="string"
+            >
+                <MudSelectItem Value="@("AC")">AC</MudSelectItem>
+                <MudSelectItem Value="@("AL")">AL</MudSelectItem>
+                <MudSelectItem Value="@("AP")">AP</MudSelectItem>
+                <MudSelectItem Value="@("AM")">AM</MudSelectItem>
+                <MudSelectItem Value="@("BA")">BA</MudSelectItem>
+                <MudSelectItem Value="@("CE")">CE</MudSelectItem>
+                <MudSelectItem Value="@("DF")">DF</MudSelectItem>
+                <MudSelectItem Value="@("ES")">ES</MudSelectItem>
+                <MudSelectItem Value="@("GO")">GO</MudSelectItem>
+                <MudSelectItem Value="@("MA")">MA</MudSelectItem>
+                <MudSelectItem Value="@("MT")">MT</MudSelectItem>
+                <MudSelectItem Value="@("MS")">MS</MudSelectItem>
+                <MudSelectItem Value="@("MG")">MG</MudSelectItem>
+                <MudSelectItem Value="@("PA")">PA</MudSelectItem>
+                <MudSelectItem Value="@("PB")">PB</MudSelectItem>
+                <MudSelectItem Value="@("PR")">PR</MudSelectItem>
+                <MudSelectItem Value="@("PE")">PE</MudSelectItem>
+                <MudSelectItem Value="@("PI")">PI</MudSelectItem>
+                <MudSelectItem Value="@("RJ")">RJ</MudSelectItem>
+                <MudSelectItem Value="@("RN")">RN</MudSelectItem>
+                <MudSelectItem Value="@("RS")">RS</MudSelectItem>
+                <MudSelectItem Value="@("RO")">RO</MudSelectItem>
+                <MudSelectItem Value="@("RR")">RR</MudSelectItem>
+                <MudSelectItem Value="@("SC")">SC</MudSelectItem>
+                <MudSelectItem Value="@("SP")">SP</MudSelectItem>
+                <MudSelectItem Value="@("SE")">SE</MudSelectItem>
+                <MudSelectItem Value="@("TO")">TO</MudSelectItem>
+            </MudSelect>
+
+            <MudAutocomplete 
+                T="string" 
+                Label="Cidade" 
+                @bind-Value="Cliente.Cidade.Nome" 
+                SearchFunc="@SearchCidades" 
+                MaxItems="20" 
+                Required="true" 
+                RequiredError="O campo 'Cidade' é obrigatório!" 
+                ResetValueOnEmptyText="true"
+                CoerceText="true" 
+                CoerceValue="true"
+            />
+            @if (!string.IsNullOrEmpty(_errorMessage))
+            {
+                <MudText Typo="Typo.body2" Color="Color.Error">@_errorMessage</MudText>
+            }
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancelar</MudButton>
+        <MudButton OnClick="Editar" Disabled="!isValid" Color="Color.Info">Salvar</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] private MudDialogInstance MudDialog { get; set; } = null!;
+    [Parameter] public Cliente Cliente { get; set; } = new Cliente();
+
+    private MudForm? form;
+    private bool isValid;
+    private string _phoneError = string.Empty;
+    private string _errorMessage = string.Empty;
+    private List<string> cidades = CidadesBrasil.Cidades;
+
+    private void Cancel() => MudDialog.Cancel();
+
+    private bool _isUpdating = false;
+
+    private async Task Editar()
+    {
+        if (_isUpdating)
+            return;
+
+        if (isValid)
+        {
+            if (string.IsNullOrEmpty(Cliente.Cidade.Nome))
+            {
+                _errorMessage = "O campo 'Cidade' não pode ser vazio.";
+                return;
+            }
+
+            try
+            {
+                _isUpdating = true;
+                await ClientesService.UpdateCliente(Cliente);
+                MudDialog.Close(DialogResult.Ok(true));
+            }
+            catch (HttpRequestException httpEx)
+            {
+                _errorMessage = $"Erro na requisição HTTP: {httpEx.Message}";
+            }
+            catch (Exception ex)
+            {
+                _errorMessage = $"Erro ao atualizar cliente: {ex.Message}";
+            }
+            finally
+            {
+                _isUpdating = false;
+            }
+        }
+    }
+
+
+    private void OnTelefoneChanged(string newValue)
+    {
+        var digitsOnly = new string(newValue.Where(char.IsDigit).ToArray());
+        if (digitsOnly.Length > 11 || digitsOnly.Length < 11)
+        {
+            _phoneError = "O telefone deve ter 11 dígitos.";
+        }
+        else
+        {
+            Cliente.Telefone = $"({digitsOnly.Substring(0, 2)}) {digitsOnly.Substring(2, 5)}-{digitsOnly.Substring(7)}";
+            _phoneError = string.Empty;
+        }
+    }
+
+    private Task<IEnumerable<string>> SearchCidades(string searchText)
+    {
+        var result = cidades.Where(c => c.Contains(searchText, StringComparison.OrdinalIgnoreCase)).ToList();
+        return Task.FromResult(result.AsEnumerable());
+    }
+}
