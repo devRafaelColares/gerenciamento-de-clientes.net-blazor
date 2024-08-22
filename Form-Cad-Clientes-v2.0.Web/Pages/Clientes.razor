@@ -6,24 +6,29 @@
 <MudPaper Class="mud-width-full pa-6 mb-8" Elevation="2">
     <MudGrid>
         <MudItem xs="12" sm="12" md="12">
-            <MudStack 
-            Row="true"
+            <MudStack
+                Row="true"
                 Spacing="3" 
                 JustifyContent="JustifyContent.SpaceBetween" 
                 AlignItems="AlignItems.Center">
                 
                 <div class="pt-04">
-                    <MudText Typo="Typo.h6">Consulta de Clientes</MudText>
+                    <MudText Typo="Typo.h4">Consulta de Clientes</MudText>
                 </div>
-                
+            </MudStack>
                 @* <MudButton 
                     Variant="Variant.Filled" 
                     StartIcon="@Icons.Material.Filled.FilterAlt" 
                     Color="Color.Default" 
                     Size="Size.Small" 
                  OnClick="OpenFilterDialog" /> *@
-
-                <MudTextField 
+            <MudStack
+            Class="mt-2"
+                Row="true"
+                JustifyContent="JustifyContent.SpaceBetween">
+                <MudTextField
+                Style="width: 400px;"
+                    Margin="Margin.Dense"
                     Placeholder="Filtrar" 
                     @bind-Value="termoDeBusca" 
                     T="string" 
@@ -83,9 +88,10 @@
             <MudTd DataLabel="Cidade">@context.Cidade.Nome</MudTd>
             <MudTd DataLabel="Estado">@context.Cidade.Estado</MudTd>
             <MudTd DataLabel="Data de Cadastro">@context.CreatedAt.ToString("dd/MM/yyyy HH:mm")</MudTd>
-            <MudTd>
-                <MudButton Variant="Variant.Filled" Color="Color.Default" Size="Size.Small" StartIcon="@Icons.Material.Filled.Edit"></MudButton>
-            </MudTd>
+            <MudIconButton 
+                Icon="@Icons.Material.Filled.Edit"
+                Color="Color.Default">
+            </MudIconButton>
         </RowTemplate>
     </MudTable>
 
