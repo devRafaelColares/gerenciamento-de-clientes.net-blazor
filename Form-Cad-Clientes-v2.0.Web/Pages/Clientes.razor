@@ -54,7 +54,7 @@
                         StartIcon="@Icons.Material.Filled.Delete" 
                         Color="Color.Error" 
                         Size="Size.Small"
-                        OnClick="DeletarClientesSelecionados">Deletar Cliente
+                        OnClick="OnDeleteClickAsync">Deletar Cliente
                     </MudButton>
                 </div>
             </MudStack>
@@ -62,6 +62,9 @@
     </MudGrid>
 </MudPaper>
 
+<MudText Typo="Typo.subtitle2" Class="mt-4" Color="Color.Error" Hidden="@string.IsNullOrEmpty(_errorMessage)">
+    @_errorMessage
+</MudText>
 
 <MudTable Items="_clientes?.Where(Filter) ?? Enumerable.Empty<Cliente>()" Filterable="true" QuickFilter="Filter">
         <HeaderContent>
@@ -96,16 +99,14 @@
             </MudIconButton>
         </RowTemplate>
     </MudTable>
-
-    <MudText Typo="Typo.subtitle2" Class="mt-4" Color="Color.Error" Hidden="@string.IsNullOrEmpty(_errorMessage)">
-        @_errorMessage
-    </MudText>
 </MudPaper>
 
 @code {
     private List<Cliente>? _clientes;
     private string _errorMessage = string.Empty;
     private string termoDeBusca { get; set; } = string.Empty;
+
+    [Inject] private IDialogService DialogService { get; set; } = null!;
 
     protected override async Task OnInitializedAsync()
     {
@@ -129,7 +130,6 @@
         }
     }
 
-
     private async Task DeletarClientesSelecionados()
     {
         var clientesSelecionados = _clientes.Where(c => c.IsSelected).ToList();
@@ -150,7 +150,7 @@
     private void OnFiltroChanged(string novoValor)
     {
         termoDeBusca = novoValor;
-        StateHasChanged(); // Atualiza a UI para refletir o novo filtro
+        StateHasChanged();
     }
 
     public Func<Cliente, bool> Filter => cliente =>
@@ -171,4 +171,26 @@
         );
     };
 
+    private async Task OnDeleteClickAsync()
+    {
+        var clientesSelecionados = _clientes?.Where(c => c.IsSelected).ToList() ?? new List<Cliente>();
+
+        if (!clientesSelecionados.Any())
+        {
+            _errorMessage = "Nenhum cliente selecionado para deletar.";
+            return;
+        }
+
+        var result = await DialogService.ShowMessageBox(
+            "Deseja realmente deletar os clientes selecionados?", 
+            "Deletar Clientes", 
+            yesText: "Sim", 
+            cancelText: "Não");
+
+        if (result == true)
+        {
+            await DeletarClientesSelecionados();
+            _errorMessage = string.Empty;
+        }
+    }
 }
