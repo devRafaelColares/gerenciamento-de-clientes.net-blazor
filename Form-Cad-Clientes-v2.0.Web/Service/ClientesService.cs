@@ -26,6 +26,20 @@ namespace Form_Cad_Clientes_v2._0.Web.Service
             }
         }
 
+        public async Task<Cliente> GetClienteByCodigo(int codigo)
+        {
+            try
+            {
+                return await _httpClient.GetFromJsonAsync<Cliente>($"http://localhost:5176/clientes/{codigo}")
+                        ?? new Cliente();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao obter cliente: {ex.Message}");
+                return null;
+            }
+        }
+
         public async Task<bool> SalvarCliente(Cliente cliente)
         {
             try

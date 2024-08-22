@@ -1,4 +1,4 @@
-@page "/cadastro"
+@page "/cadastro/{codigo?}"
 @using System.Text.RegularExpressions
 
 <MudPaper Class="pa-4">
@@ -52,33 +52,33 @@
                     RequiredError="O campo 'Estado' é obrigatório!"
                     T="string"
                 >
-                    <MudSelectItem Value="@("AC")">AC</MudSelectItem>
-                    <MudSelectItem Value="@("AL")">AL</MudSelectItem>
-                    <MudSelectItem Value="@("AP")">AP</MudSelectItem>
-                    <MudSelectItem Value="@("AM")">AM</MudSelectItem>
-                    <MudSelectItem Value="@("BA")">BA</MudSelectItem>
-                    <MudSelectItem Value="@("CE")">CE</MudSelectItem>
-                    <MudSelectItem Value="@("DF")">DF</MudSelectItem>
-                    <MudSelectItem Value="@("ES")">ES</MudSelectItem>
-                    <MudSelectItem Value="@("GO")">GO</MudSelectItem>
-                    <MudSelectItem Value="@("MA")">MA</MudSelectItem>
-                    <MudSelectItem Value="@("MT")">MT</MudSelectItem>
-                    <MudSelectItem Value="@("MS")">MS</MudSelectItem>
-                    <MudSelectItem Value="@("MG")">MG</MudSelectItem>
-                    <MudSelectItem Value="@("PA")">PA</MudSelectItem>
-                    <MudSelectItem Value="@("PB")">PB</MudSelectItem>
-                    <MudSelectItem Value="@("PR")">PR</MudSelectItem>
-                    <MudSelectItem Value="@("PE")">PE</MudSelectItem>
-                    <MudSelectItem Value="@("PI")">PI</MudSelectItem>
-                    <MudSelectItem Value="@("RJ")">RJ</MudSelectItem>
-                    <MudSelectItem Value="@("RN")">RN</MudSelectItem>
-                    <MudSelectItem Value="@("RS")">RS</MudSelectItem>
-                    <MudSelectItem Value="@("RO")">RO</MudSelectItem>
-                    <MudSelectItem Value="@("RR")">RR</MudSelectItem>
-                    <MudSelectItem Value="@("SC")">SC</MudSelectItem>
-                    <MudSelectItem Value="@("SP")">SP</MudSelectItem>
-                    <MudSelectItem Value="@("SE")">SE</MudSelectItem>
-                    <MudSelectItem Value="@("TO")">TO</MudSelectItem>
+                <MudSelectItem Value="@("AC")">AC</MudSelectItem>
+                <MudSelectItem Value="@("AL")">AL</MudSelectItem>
+                <MudSelectItem Value="@("AP")">AP</MudSelectItem>
+                <MudSelectItem Value="@("AM")">AM</MudSelectItem>
+                <MudSelectItem Value="@("BA")">BA</MudSelectItem>
+                <MudSelectItem Value="@("CE")">CE</MudSelectItem>
+                <MudSelectItem Value="@("DF")">DF</MudSelectItem>
+                <MudSelectItem Value="@("ES")">ES</MudSelectItem>
+                <MudSelectItem Value="@("GO")">GO</MudSelectItem>
+                <MudSelectItem Value="@("MA")">MA</MudSelectItem>
+                <MudSelectItem Value="@("MT")">MT</MudSelectItem>
+                <MudSelectItem Value="@("MS")">MS</MudSelectItem>
+                <MudSelectItem Value="@("MG")">MG</MudSelectItem>
+                <MudSelectItem Value="@("PA")">PA</MudSelectItem>
+                <MudSelectItem Value="@("PB")">PB</MudSelectItem>
+                <MudSelectItem Value="@("PR")">PR</MudSelectItem>
+                <MudSelectItem Value="@("PE")">PE</MudSelectItem>
+                <MudSelectItem Value="@("PI")">PI</MudSelectItem>
+                <MudSelectItem Value="@("RJ")">RJ</MudSelectItem>
+                <MudSelectItem Value="@("RN")">RN</MudSelectItem>
+                <MudSelectItem Value="@("RS")">RS</MudSelectItem>
+                <MudSelectItem Value="@("RO")">RO</MudSelectItem>
+                <MudSelectItem Value="@("RR")">RR</MudSelectItem>
+                <MudSelectItem Value="@("SC")">SC</MudSelectItem>
+                <MudSelectItem Value="@("SP")">SP</MudSelectItem>
+                <MudSelectItem Value="@("SE")">SE</MudSelectItem>
+                <MudSelectItem Value="@("TO")">TO</MudSelectItem>
                 </MudSelect>
 
                 <MudAutocomplete 
@@ -108,6 +108,7 @@
 </MudPaper>
 
 @code {
+    [Parameter] public string Codigo { get; set; }
     private Cliente cliente = new Cliente();
     private MudForm form;
     private bool isValid;
@@ -117,11 +118,34 @@
 
     private List<string> cidades = CidadesBrasil.Cidades;
 
+    protected override async Task OnParametersSetAsync()
+    {
+        if (!string.IsNullOrEmpty(Codigo))
+        {
+            cliente = await ClientesService.GetClienteByCodigo(int.Parse(Codigo));
+
+            if (cliente == null)
+            {
+                _errorMessage = "Cliente não encontrado.";
+                showForm = false;
+            }
+        }
+    }
+
     private async Task Salvar()
     {
         if (isValid)
         {
-            var sucesso = await ClientesService.SalvarCliente(cliente);
+            bool sucesso;
+            if (!string.IsNullOrEmpty(Codigo))
+            {
+                await ClientesService.UpdateCliente(cliente);
+                sucesso = true;
+            }
+            else
+            {
+                sucesso = await ClientesService.SalvarCliente(cliente);
+            }
 
             if (sucesso)
             {
@@ -141,7 +165,6 @@
         {
             _phoneError = "O telefone deve ter 11 dígitos.";
         }
-
         else
         {
             cliente.Telefone = $"({digitsOnly.Substring(0, 2)}) {digitsOnly.Substring(2, 5)}-{digitsOnly.Substring(7)}";

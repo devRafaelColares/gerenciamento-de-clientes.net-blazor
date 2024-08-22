@@ -96,7 +96,7 @@
             <MudIconButton 
                 Icon="@Icons.Material.Filled.Edit"
                 Color="Color.Default"
-                OnClick="() => OpenEditDialogAsync(context)">
+                OnClick="() => NavigateToEditarCliente(context.Codigo)">
             </MudIconButton>
         </RowTemplate>
     </MudTable>
@@ -147,6 +147,10 @@
     {
         NavigationManager.NavigateTo("/cadastro");
     }
+    private void NavigateToEditarCliente(int codigo)
+    {
+        NavigationManager.NavigateTo($"/cadastro/{codigo}");
+    }
 
     private void OnFiltroChanged(string novoValor)
     {
@@ -195,7 +199,7 @@
         }
     }
 
-private async Task OpenEditDialogAsync(Cliente cliente)
+@* private async Task OpenEditDialogAsync(Cliente cliente)
 {
     if (cliente == null)
     {
@@ -218,7 +222,7 @@ private async Task OpenEditDialogAsync(Cliente cliente)
 
         await CarregarClientes();
     }
-}
+} *@
 
 
 
